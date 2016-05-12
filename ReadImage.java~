@@ -1,0 +1,8 @@
+import java.awt.image.BufferedImage;
+import java.io.*;
+public class ReadImage{
+    public static void ReadImage(String input){
+	BufferedImage i1 = ImageIO.read(new File(input));
+	//i1=ImageIO.read(new File(input));
+    }
+}
