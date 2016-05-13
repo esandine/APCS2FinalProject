@@ -38,7 +38,7 @@ public class ReadImage{
 	String ans = "";
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
-		ans += pixelRGBValues[r][c].getColor() + " ";
+		ans += pixelRGBValues[r][c].getColor().getRGB() + " ";
 	    }
 	    ans += "\n";
 	}
@@ -47,9 +47,18 @@ public class ReadImage{
     public String getDimension(){
 	return "h: " + height + ", w: " + width;
     }
+    //Makes all the pixels either white or black
+    public void setBlackAndWhite(){
+	for(int r = 0; r < height; r++){
+	    for(int c = 0; c<width; c++){
+		pixelRGBValues[r][c].toBlackandWhite();
+	    }
+	}
+    }
     public static void main(String[]args){
 	if(args.length>0){
 	    ReadImage r1 = new ReadImage(args[0]);
+	    r1.setBlackAndWhite();
 	    //r1.setBlack();
 	    System.out.println(r1.getDimension());
 	    System.out.println(r1);

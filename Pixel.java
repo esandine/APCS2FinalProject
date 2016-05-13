@@ -30,4 +30,12 @@ public class Pixel{
     public int getYcor(){
 	return ycor;
     }
+    //Sets the color ot black if it is black or white if it is any color that is not black
+    public void toBlackandWhite(){
+	if((color.getRed()<30)&&(color.getGreen()<30)&&(color.getBlue()<30)){
+	    setColor(Color.black);
+	}else{
+	    setColor(Color.white);
+	}
+    }
 }
