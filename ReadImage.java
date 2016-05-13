@@ -7,11 +7,20 @@ public class ReadImage{
     private Pixel[][] pixelRGBValues;
     private int height;
     private int width;
+    //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
 		pixelRGBValues[r][c] = new Pixel(image.getRGB(c, height - r - 1),r,c);
+	    }
+	}
+    }
+    //The reverse of loadRGBValues() primarily used for testing
+    private void setRGBValues(){
+	for(int r = 0; r < height; r++){ 
+	    for(int c = 0; c < width; c++){
+		image.setRGB(c, height - r -1, pixelRGBValues[r][c].getColor().getRGB());
 	    }
 	}
     }
@@ -55,13 +64,28 @@ public class ReadImage{
 	    }
 	}
     }
+    
+    public void outPut(String s){
+	setRGBValues();
+	try{
+	    ImageIO.write(image,"gif",new File(s));
+	}catch(IOException e){
+	    System.out.println("Writing error");
+	}
+    }
     public static void main(String[]args){
-	if(args.length>0){
+	if(args.length>1){
+	    ReadImage r1 = new ReadImage(args[0]);
+	    r1.setBlackAndWhite();
+	    r1.outPut(args[1]);
+	}
+	else if(args.length>0){
 	    ReadImage r1 = new ReadImage(args[0]);
 	    r1.setBlackAndWhite();
 	    //r1.setBlack();
 	    System.out.println(r1.getDimension());
 	    System.out.println(r1);
+	    r1.outPut("results.jpg");
 	}
     }
 }
