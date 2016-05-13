@@ -49,7 +49,7 @@ public class ReadImage{
     public static void main(String[]args){
 	if(args.length>0){
 	    ReadImage r1 = new ReadImage(args[0]);
-	    r1.setBlack();
+	    //r1.setBlack();
 	    System.out.println(r1.getDimension());
 	    System.out.println(r1);
 	}
