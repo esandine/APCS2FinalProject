@@ -10,7 +10,7 @@ public class ReadImage{
 	pixelRGBValues = new int[height][width];
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
-		pixelRGBValues[r][width] = image.getRGB(r, width - c - 1);
+		pixelRGBValues[r][c] = image.getRGB(c, height - r - 1);
 	    }
 	}
     }
@@ -19,6 +19,7 @@ public class ReadImage{
 	    image = ImageIO.read(new File(input));
 	    height = image.getHeight();
 	    width = image.getWidth();
+	    loadRGBValues();
 	}catch(IOException e){
 	    System.out.println("No file found");
 	    image = null;
@@ -42,7 +43,7 @@ public class ReadImage{
 	if(args.length>0){
 	    ReadImage r1 = new ReadImage(args[0]);
 	    System.out.println(r1.getDimension());
-	    // System.out.println(r1);
+	    System.out.println(r1);
 	}
     }
 }
