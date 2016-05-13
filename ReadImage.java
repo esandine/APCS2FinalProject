@@ -1,23 +1,24 @@
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
 public class ReadImage{
     private BufferedImage image;
-    private int[][] pixelRGBValues;
+    private Pixel[][] pixelRGBValues;
     private int height;
     private int width;
     private void loadRGBValues(){
-	pixelRGBValues = new int[height][width];
+	pixelRGBValues = new Pixel[height][width];
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
-		pixelRGBValues[r][c] = image.getRGB(c, height - r - 1);
+		pixelRGBValues[r][c] = new Pixel(image.getRGB(c, height - r - 1),r,c);
 	    }
 	}
     }
     private void setBlack(){
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
-		pixelRGBValues[r][c] = 0;
+		pixelRGBValues[r][c].setColor(Color.black);
 	    }
 	}
     }
@@ -37,7 +38,7 @@ public class ReadImage{
 	String ans = "";
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
-		ans += pixelRGBValues[r][c] + " ";
+		ans += pixelRGBValues[r][c].getColor() + " ";
 	    }
 	    ans += "\n";
 	}

@@ -1,3 +1,4 @@
+import java.awt.Color;
 public class Pixel{
     //Instance Variables
     private Color color;
@@ -5,7 +6,7 @@ public class Pixel{
     private int ycor;
     //Constructors
     public Pixel(int RGB,int x,int y){
-	color new Color(RGB);
+	color = new Color(RGB);
 	xcor = x;
 	ycor = y;
     }
