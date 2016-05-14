@@ -8,8 +8,8 @@ public class ReadImage{
     private Pixel[][] pixelRGBValues;
     private int height;
     private int width;
-    private ArrayList<int[][]> symbols;
-    private Color bgC;
+    private Pixel bgC;
+    private BufferedImage symbol;
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
@@ -31,8 +31,9 @@ public class ReadImage{
     private void getBG(){
 	int black = 0;
 	int white = 0;
+	bgC = new Pixel(0,0,0);
 	for(int c = 0; c < width; c++){
-	    if(isBlack(0, c) || isBlack(width - 1, c)){
+	    if(isBlack(0, c) || isBlack(height - 1, c)){
 		black++;
 	    }
 	    else{
@@ -40,7 +41,7 @@ public class ReadImage{
 	    }
 	}
 	for(int r = 1; r < height - 1; r++){
-	    if(isBlack(r, 0) || isBlack(r, height - 1)){
+	    if(isBlack(r, 0) || isBlack(r, width - 1)){
 		black++;
 	    }
 	    else{
@@ -55,12 +56,49 @@ public class ReadImage{
 	}
     }
     private boolean isBlack(int r, int c){
-	if(pixelRGBValue[r][c].getColor().equals(color.Black)){
+	if(pixelRGBValues[r][c].getColor().equals(Color.black)){
 	    return true;
 	}
 	else{
 	    return false;
 	}
+    }
+    //remove symbols from picture
+    private BufferedImage removeSymbol(){
+	int startX = width - 1;
+	int startY = height - 1;
+	int endX = 0;
+	int endY = 0;
+	getBG();
+	for(int r = 0; r < height; r++){
+	    for(int c = 0; c < width; c++){
+		if(!pixelRGBValues[r][c].getColor().equals(bgC.getColor())){
+		    if(r < startY){
+			startY = r;
+		    }
+		    if(r > endY){
+			endY = r;
+		    }
+		    if(c < startX){
+			startX = c;
+		    }
+		    if(c > endX){
+			endX= c;
+		    }
+		}
+	    }
+	}
+	int w = Math.abs(startX - endX) + 1;
+	int h = Math.abs(startY - endY) + 1;
+	System.out.println(height + "," + width + "," + h + "," + w);
+	BufferedImage symbol = new BufferedImage(w, h, 1);
+	for(int r = 0; r < h; r++){
+	    for(int c = 0; c < w; c++){
+		symbol.setRGB(c, h - r - 1, pixelRGBValues[r + startY][c + startX].getColor().getRGB());
+	    }
+	}
+	//	System.out.println(symbol.getHeight() + "," + symbol.getWidth());
+	return symbol;
     }
     private void setBlack(){
 	for(int r = 0; r < height; r++){
@@ -71,11 +109,11 @@ public class ReadImage{
     }
     public ReadImage(String input){
 	try{
-	    symbols = new ArrayList<int[][]>;
 	    image = ImageIO.read(new File(input));
 	    height = image.getHeight();
 	    width = image.getWidth();
 	    loadRGBValues();
+	    symbol = removeSymbol();
 	}catch(IOException e){
 	    System.out.println("No file found");
 	    image = null;
@@ -107,7 +145,15 @@ public class ReadImage{
     public void outPut(String s){
 	setRGBValues();
 	try{
-	    ImageIO.write(image,"gif",new File(s));
+	    ImageIO.write(image,"png",new File(s));
+	}catch(IOException e){
+	    System.out.println("Writing error");
+	}
+    }
+    public void outputSymbol(String s){
+	//	setRGBValues();
+	try{
+	    ImageIO.write(symbol,"png",new File(s));
 	}catch(IOException e){
 	    System.out.println("Writing error");
 	}
@@ -124,7 +170,8 @@ public class ReadImage{
 	    //r1.setBlack();
 	    System.out.println(r1.getDimension());
 	    System.out.println(r1);
-	    r1.outPut("results.jpg");
+	    //r1.outPut("results.jpg");
+	    r1.outputSymbol("results.png");
 	}
     }
 }
