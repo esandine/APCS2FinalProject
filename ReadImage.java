@@ -2,11 +2,14 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
+import java.util.*;
 public class ReadImage{
     private BufferedImage image;
     private Pixel[][] pixelRGBValues;
     private int height;
     private int width;
+    private ArrayList<int[][]> symbols;
+    private Color bgC;
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
@@ -24,6 +27,41 @@ public class ReadImage{
 	    }
 	}
     }
+    //finds the background color
+    private void getBG(){
+	int black = 0;
+	int white = 0;
+	for(int c = 0; c < width; c++){
+	    if(isBlack(0, c) || isBlack(width - 1, c)){
+		black++;
+	    }
+	    else{
+		white++;
+	    }
+	}
+	for(int r = 1; r < height - 1; r++){
+	    if(isBlack(r, 0) || isBlack(r, height - 1)){
+		black++;
+	    }
+	    else{
+		white++;
+	    }
+	}
+	if(black > white){
+	    bgC.setColor(Color.black);
+	}
+	else{
+	    bgC.setColor(Color.white);
+	}
+    }
+    private boolean isBlack(int r, int c){
+	if(pixelRGBValue[r][c].getColor().equals(color.Black)){
+	    return true;
+	}
+	else{
+	    return false;
+	}
+    }
     private void setBlack(){
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
@@ -33,6 +71,7 @@ public class ReadImage{
     }
     public ReadImage(String input){
 	try{
+	    symbols = new ArrayList<int[][]>;
 	    image = ImageIO.read(new File(input));
 	    height = image.getHeight();
 	    width = image.getWidth();
