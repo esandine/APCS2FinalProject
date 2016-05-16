@@ -170,7 +170,7 @@ public class ReadImage{
 	    //r1.setBlack();
 	    System.out.println(r1.getDimension());
 	    System.out.println(r1);
-	    //r1.outPut("results.jpg");
+	    r1.outPut("results.jpg");
 	    r1.outputSymbol("results.png");
 	}
     }
