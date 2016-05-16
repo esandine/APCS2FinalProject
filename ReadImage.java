@@ -141,7 +141,9 @@ public class ReadImage{
 	    }
 	}
     }
-    
+    public boolean[][]toBoolean(){
+	boolean[][]retArray=new 
+    }
     public void outPut(String s){
 	setRGBValues();
 	try{
