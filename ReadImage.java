@@ -181,8 +181,9 @@ public class ReadImage{
 	else if(args.length>0){
 	    ReadImage r1 = new ReadImage(args[0]);
 	    long time = System.currentTimeMillis();
+	    r1.image=r1.removeSymbol();
 	    for(int i = 0; i< 1000000;i++){
-		r1.image.getScaledInstance(100,100,Image.SCALE_SMOOTH);
+		r1.image.getScaledInstance(1618,1000,Image.SCALE_SMOOTH);
 	    }
 	    System.out.println("Fast"+(System.currentTimeMillis()-time));
 
