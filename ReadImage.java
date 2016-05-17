@@ -142,7 +142,7 @@ public class ReadImage{
 	}
     }
     public boolean[][]toBoolean(){
-	setBlackAndWhite()
+	setBlackAndWhite();
 	boolean[][]retArray=new boolean[pixelRGBValues.length][pixelRGBValues[0].length];
 	for(int r = 0;r<retArray.length;r++){
 	    for(int c = 0;c<retArray[0].length;c++){
@@ -153,6 +153,7 @@ public class ReadImage{
 		}
 	    }
 	}
+	return retArray;
     }
     public void outPut(String s){
 	setRGBValues();
