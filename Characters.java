@@ -6,7 +6,12 @@ public class Characters{
 	characters = new Character[charImages.length];
 	for(int i = 0; i < characters.length; i++){
 	    characters[i] = new Character(charImages[i]);
+	}	
+    }
+    public recolorDir(){
+	for(int i = 0; i < characters.length; i++){
+	    String outputFile = "char" + i;
+	    characters[i].recolorImg(outputFile);
 	}
-	
     }
 }
