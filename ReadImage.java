@@ -113,7 +113,6 @@ public class ReadImage{
 	    height = image.getHeight();
 	    width = image.getWidth();
 	    loadRGBValues();
-	    symbol = removeSymbol();
 	}catch(IOException e){
 	    System.out.println("No file found");
 	    image = null;
@@ -163,14 +162,14 @@ public class ReadImage{
 	    System.out.println("Writing error");
 	}
     }
-    public void outputSymbol(String s){
+    /*public void outputSymbol(String s){
 	//	setRGBValues();
 	try{
 	    ImageIO.write(symbol,"png",new File(s));
 	}catch(IOException e){
 	    System.out.println("Writing error");
 	}
-    }
+	}*/
     public static void main(String[]args){
 	if(args.length>1){
 	    ReadImage r1 = new ReadImage(args[0]);
@@ -181,10 +180,10 @@ public class ReadImage{
 	    ReadImage r1 = new ReadImage(args[0]);
 	    r1.setBlackAndWhite();
 	    //r1.setBlack();
-	    System.out.println(r1.getDimension());
-	    System.out.println(r1);
-	    r1.outPut("results.jpg");
-	    r1.outputSymbol("results.png");
+	    //System.out.println(r1.getDimension());
+	    //System.out.println(r1);
+	    r1.outPut("t.png");
+	    //r1.outputSymbol("results.png");
 	}
     }
 }

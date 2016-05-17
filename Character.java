@@ -4,7 +4,7 @@ public class Character{
 	character = new ReadImage(img);
 	character.setBlackAndWhite();
     }
-    public recolorImg(String newImage){
+    public void recolorImg(String newImage){
 	character.outPut(newImage);
     }
 }

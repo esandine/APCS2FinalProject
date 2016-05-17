@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class Characters{
     private Character[] characters;
     public Characters(String dir){
@@ -8,7 +10,7 @@ public class Characters{
 	    characters[i] = new Character(charImages[i]);
 	}	
     }
-    public recolorDir(){
+    public void recolorDir(){
 	for(int i = 0; i < characters.length; i++){
 	    String outputFile = "char" + i;
 	    characters[i].recolorImg(outputFile);
