@@ -10,6 +10,20 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/17/2016:
+-Ely Sandine
+-New Features:
+-Created class booleanArray
+-Created class Read with static methods
+-Read.loadBoolean(String): creates a booleanArray given the name of an image file
+-Read.compare(String,String,double): compares the two images and calculates a percent error when both are converted to black and white
+-Bugs Added:
+-Messy
+-Bugs Fixed:
+-none
+-Goals
+-Clean up code
+-calculate a percent error given two images
 
 05/16/2016:
 -Ely Sandine
