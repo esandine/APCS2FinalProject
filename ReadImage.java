@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.awt.Image;
 import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
@@ -179,12 +180,13 @@ public class ReadImage{
 	}
 	else if(args.length>0){
 	    ReadImage r1 = new ReadImage(args[0]);
-	    r1.setBlackAndWhite();
-	    //r1.setBlack();
-	    System.out.println(r1.getDimension());
-	    System.out.println(r1);
-	    r1.outPut("results.jpg");
-	    r1.outputSymbol("results.png");
+	    long time = System.currentTimeMillis();
+	    for(int i = 0; i< 1000000;i++){
+		r1.image.getScaledInstance(100,100,Image.SCALE_SMOOTH);
+	    }
+	    System.out.println("Fast"+(System.currentTimeMillis()-time));
+
+	    
 	}
     }
 }
