@@ -1,7 +1,9 @@
-public class booleanDriver{
+public class Driver{
     public static void main(String[]args){
-	booleanArray r1 = new booleanArray();
-	booleanArray r2 = new booleanArray();
-	System.out.println(r1.compareTo(r2,0));
+	if(args.length>2){
+	    booleanArray r1 = Read.loadBoolean(args[0]);
+	    booleanArray r2 = Read.loadBoolean(args[1]);
+	    System.out.println(r1.compareTo(r2,Integer.parseInt(args[2]/100.0)));
+	}
     }
 }

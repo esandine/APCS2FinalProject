@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.util.*;
+import java.awt.Graphics2D;
 public class ReadImage{
     private BufferedImage image;
     private Pixel[][] pixelRGBValues;
@@ -33,7 +34,16 @@ public class ReadImage{
     public void scaleImage(int h, int w){
 	height = h;
 	width = w;
-	image = (BufferedImage)image.getScaledInstance(w,h,Image.SCALE_SMOOTH);
+	//Special thanks to stackoverflow for helping fix the issue with type casting
+	//http://stackoverflow.com/questions/9417356/bufferedimage-resize
+	//It makes an image which then copies to the BufferedImage
+	Image scaled = image.getScaledInstance(w,h,Image.SCALE_SMOOTH);
+	image = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+	Graphics2D g2d = image.createGraphics();//to rewrite the buffered image
+	g2d.drawImage(scaled, 0, 0, null);
+	g2d.dispose();//gets rid of it
+	//End of help from stackoverflow
+
 	loadRGBValues();
     }
     //Scales to golden ratio
