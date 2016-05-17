@@ -10,7 +10,20 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
-5/13/2016:
+
+05/16/2016:
+-Ely Sandine
+-New Features:
+-added toBoolean() that converts the array of pixels into booleans with true marking the pixel is part of the character
+-Bugs Added:
+-Merging with git is not fully understood so it is possible something my have been messed up
+-Have not tested the new function yet
+-Bugs Fixed:
+-none
+-Goals
+-Work on comparison between image and characters
+
+05/13/2016:
 -Ely Sandine
 -New Features:
 -Pixel class keeps track of each pixel
