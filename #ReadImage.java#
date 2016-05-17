@@ -33,7 +33,8 @@ public class ReadImage{
     public void scaleImage(int h, int w){
 	height = h;
 	width = w;
-	image = image.getScaledInstance(w,h,Image.SCALE_SMOOTH);
+	image = (BufferedImage)
+image.getScaledInstance(w,h,Image.SCALE_SMOOTH);
 	loadRGBValues();
     }
     //Scales to golden ratio

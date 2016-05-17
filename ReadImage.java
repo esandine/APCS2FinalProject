@@ -28,6 +28,18 @@ public class ReadImage{
 	    }
 	}
     }
+
+    //Scales image
+    public void scaleImage(int h, int w){
+	height = h;
+	width = w;
+	image = (BufferedImage)image.getScaledInstance(w,h,Image.SCALE_SMOOTH);
+	loadRGBValues();
+    }
+    //Scales to golden ratio
+    public void scaleImage(){
+	scaleImage(1618,1000);
+    }
     //finds the background color
     private void getBG(){
 	int black = 0;
@@ -172,6 +184,8 @@ public class ReadImage{
 	    System.out.println("Writing error");
 	}
     }
+    //Creates a booleanArray class to be compared
+    
     public static void main(String[]args){
 	if(args.length>1){
 	    ReadImage r1 = new ReadImage(args[0]);
@@ -186,8 +200,6 @@ public class ReadImage{
 		r1.image.getScaledInstance(1618,1000,Image.SCALE_SMOOTH);
 	    }
 	    System.out.println("Fast"+(System.currentTimeMillis()-time));
-
-	    
 	}
     }
 }
