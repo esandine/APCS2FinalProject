@@ -5,4 +5,9 @@ public class Read{
 	input.scaleImage();
 	return new booleanArray(input.toBoolean());
     }
+    public static boolean compare(String image1, String image2, double percentError){
+	booleanArray a1 = loadBoolean(image1);
+	booleanArray a2 = loadBoolean(image2);
+	return a1.compareTo(a2,percentError/100);
+    }
 }
