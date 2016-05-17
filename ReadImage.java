@@ -142,7 +142,17 @@ public class ReadImage{
 	}
     }
     public boolean[][]toBoolean(){
-	boolean[][]retArray=new 
+	setBlackAndWhite()
+	boolean[][]retArray=new boolean[pixelRGBValues.length][pixelRGBValues[0].length];
+	for(int r = 0;r<retArray.length;r++){
+	    for(int c = 0;c<retArray[0].length;c++){
+		if(pixelRGBValues[r][c].getColor().equals(Color.black)){
+		    retArray[r][c]=true;
+		}else{
+		    retArray[r][c]=false;
+		}
+	    }
+	}
     }
     public void outPut(String s){
 	setRGBValues();
