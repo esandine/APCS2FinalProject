@@ -10,6 +10,17 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/18/2016:
+-Ely Sandine
+-New Features:
+-percentError method takes two images and retuns the percent error between them
+-Bugs Added:
+-It prints alot of numbers while it is running, I am not sure why
+-Bugs Fixed:
+-none
+-Goals
+-make percentError a booleanArray functino
+
 05/17/2016:
 -Ely Sandine
 -New Features:
