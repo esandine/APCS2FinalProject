@@ -7,7 +7,6 @@ public class Characters{
 	String[] charImages = d.list();
 	characters = new ReadImage[charImages.length];
 	for(int i = 0; i < characters.length; i++){
-	    System.out.println(charImages[i]);
 	    characters[i] = new ReadImage(dir + charImages[i]);
 	}	
 	
@@ -15,7 +14,6 @@ public class Characters{
     public void recolorDir(){
 	for(int i = 0; i < characters.length; i++){
 	    String outputFile = "char" + i;
-	    System.out.println(outputFile);
 	    recolorImg(characters[i], outputFile);
 	}
     }
