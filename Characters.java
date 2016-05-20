@@ -1,23 +1,26 @@
 import java.io.File;
 
 public class Characters{
-    private Character[] characters;
+    private ReadImage[] characters;
     public Characters(String dir){
 	File d = new File(dir);
 	String[] charImages = d.list();
-	for(String s: charImages){
-	    System.out.println(s);
-	}
-	characters = new Character[charImages.length];
+	characters = new ReadImage[charImages.length];
 	for(int i = 0; i < characters.length; i++){
-	    characters[i] = new Character(charImages[i]);
+	    System.out.println(charImages[i]);
+	    characters[i] = new ReadImage(charImages[i]);
 	}	
 	
     }
     public void recolorDir(){
 	for(int i = 0; i < characters.length; i++){
 	    String outputFile = "char" + i;
-	    characters[i].recolorImg(outputFile);
+	    System.out.println(outputFile);
+	    recolorImg(characters[i], outputFile);
 	}
+    }
+    public void recolorImg(ReadImage image, String outputFile){
+	image.setBlackAndWhite();
+	image.outPut(outputFile);
     }
 }
