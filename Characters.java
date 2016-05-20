@@ -8,7 +8,7 @@ public class Characters{
 	characters = new ReadImage[charImages.length];
 	for(int i = 0; i < characters.length; i++){
 	    System.out.println(charImages[i]);
-	    characters[i] = new ReadImage(charImages[i]);
+	    characters[i] = new ReadImage(dir + charImages[i]);
 	}	
 	
     }
