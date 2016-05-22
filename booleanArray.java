@@ -44,16 +44,14 @@ public class booleanArray{
 	return failuresLeft>=0;
     }
     public double percentError(booleanArray other){
-	double max = 100;
-	double min = 0;
-	while(max-min>.000001){
-            if(compareTo(other, (max+min)/2)){
-		max=(max+min)/2;
-            }
-            else{
-		min=(max+min)/2;
-            }
-        }
-	return (max+min)/2;
+	double retValue = 0;
+	for(int r = 0;r < data.length;r++){
+	    for(int c = 0; c < data[0].length;c++){
+		if(getValue(r,c)!=other.getValue(r,c)){
+		    retValue++;
+		}
+	    }
+	}
+	return retValue/16180;
     }
 }
