@@ -8,9 +8,9 @@ public class tester{
 	    //b.loadDirectory("alphabet/");
 	    double t3 = System.currentTimeMillis();
 	    //System.out.println(b.closestMatch());
-	    System.out.println("Reading one file: "+((t2-t1)/1000));
-	    System.out.println("loading directory: "+((t3-t2)/1000));
-	    System.out.println("Total: "+(System.currentTimeMillis()-t1)/1000);
+	    Read.debug("Reading one file: "+((t2-t1)/1000));
+	    Read.debug("loading directory: "+((t3-t2)/1000));
+	    Read.debug("Total: "+(System.currentTimeMillis()-t1)/1000);
 	}
     }
 }

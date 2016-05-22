@@ -1,5 +1,5 @@
 public class Read{
-    private static boolean debug = true;
+    private static boolean debug = false;
     //A class of static methods
     public static booleanArray loadBoolean(String image){
 	double t1 = System.currentTimeMillis();
