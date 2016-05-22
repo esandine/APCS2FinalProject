@@ -136,7 +136,6 @@ public class ReadImage{
 	    height = image.getHeight();
 	    width = image.getWidth();
 	    loadRGBValues();
-	    symbol = removeSymbol();
 	}catch(IOException e){
 	    System.out.println("No file found");
 	    image = null;
@@ -186,14 +185,15 @@ public class ReadImage{
 	    System.out.println("Writing error");
 	}
     }
-    public void outputSymbol(String s){
+    /*public void outputSymbol(String s){
 	//	setRGBValues();
 	try{
 	    ImageIO.write(symbol,"png",new File(s));
 	}catch(IOException e){
 	    System.out.println("Writing error");
 	}
-    }
+
+	}*/
     //Creates a booleanArray class to be compared
     
     public static void main(String[]args){
@@ -213,3 +213,4 @@ public class ReadImage{
 	}
     }
 }
+

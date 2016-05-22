@@ -1,7 +1,11 @@
 public class Character{
-    private boolean[][] character;
+    private ReadImage character;
     public Character(String img){
-	ReadImage i = new ReadImage(img);
-	character = i.toBoolean();
+	character = new ReadImage(img);
+    }
+    public void recolorImg(String newImage){
+	character.getDimension();
+	character.setBlackAndWhite();
+	character.outPut(newImage);
     }
 }
