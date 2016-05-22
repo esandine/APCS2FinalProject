@@ -181,7 +181,6 @@ public class ReadImage{
 	return retArray;
     }
     public void outPut(String s){
-	setRGBValues();
 	try{
 	    ImageIO.write(image,"png",new File(s));
 	}catch(IOException e){
@@ -202,7 +201,7 @@ public class ReadImage{
     public static void main(String[]args){
 	if(args.length>1){
 	    ReadImage r1 = new ReadImage(args[0]);
-	    r1.setBlackAndWhite();
+	    r1.scaleImage();
 	    r1.outPut(args[1]);
 	}
 	else if(args.length>0){

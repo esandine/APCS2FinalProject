@@ -38,7 +38,7 @@ public class ReadImage{
 	//Special thanks to stackoverflow for helping fix the issue with type casting
 	//http://stackoverflow.com/questions/9417356/bufferedimage-resize
 	//It makes an image which then copies to the BufferedImage
-	Image scaled = image.getScaledInstance(w,h,Image.SCALE_FAST);
+	Image scaled = image.getScaledInstance(w,h,Image.SCALE_SMOOTH);
 	image = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
 	Graphics2D g2d = image.createGraphics();//to rewrite the buffered image
 	g2d.drawImage(scaled, 0, 0, null);

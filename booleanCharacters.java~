@@ -1,7 +1,6 @@
 import java.io.File;
 import java.util.Hashtable;
 public class booleanCharacters{
-    private ReadImage[] chars;
     private String[] charStrings;
     private booleanArray[] booleanArrs;
     private String directory;
@@ -9,20 +8,14 @@ public class booleanCharacters{
     public booleanCharacters(String dir){
 	File in = new File(dir);
 	String[] charImages = in.list();
-	chars = new ReadImage[charImages.length];
 	charStrings = new String[charImages.length];
-	booleanArrs = new booleanArray[chars.length];
-	for(int i = 0; i < chars.length; i++){
-	    chars[i] = new ReadImage(dir + charImages[i]);
+	booleanArrs = new booleanArray[charStrings.length];
+	for(int i = 0; i < booleanArrs.length; i++){
+	    System.out.println(dir+charImages[i]);
+	    booleanArrs[i] = Read.loadBoolean(dir + charImages[i],false);
 	}
-	//System.out.println("changing to booleans");
-	for(int i = 0; i < chars.length; i++){
-	    booleanArrs[i] = new booleanArray(chars[i].toBoolean());
-	}
-	//System.out.println("making string values for images");
 	for(int i = 0; i < charImages.length; i++){
-	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);
-	   
+	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);	   
 	}
     }
     public Hashtable<booleanArray,String> toHashtable(){
