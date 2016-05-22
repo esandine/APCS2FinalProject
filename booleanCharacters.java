@@ -18,4 +18,12 @@ public class booleanCharacters{
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);
 	}
     }
+    public boolean compareTo(booleanArray other, double percent){
+	for(int i = 0; i < booleanArrs.length; i++){
+	    if(booleanArrs[i].compareTo(other, percent)){
+		return true;
+	    }
+	}
+	return false;
+    }
 }
