@@ -1,5 +1,6 @@
 public class Character{
     private ReadImage character;
+    private boolean[][] 
     public Character(String img){
 	character = new ReadImage(img);
     }
