@@ -19,7 +19,7 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -none
 -Goals
--make percentError a booleanArray functino
+-Made a bunch of booleanArrays to check if a letter is the same as another
 
 05/17/2016:
 -Ely Sandine

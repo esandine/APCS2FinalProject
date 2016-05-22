@@ -10,6 +10,20 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/22/2016:
+-Ely Sandine
+-New Features:
+-Used booleanCharacter class to make loadDirectory which converts all files in a directory to a hashtable with the booleanArray of the picture and a string with the name
+-added closestMatch() which compares the booleanArray to all the other characters to find which character it is
+-Bugs Added:
+-closestMatch is not very accurate (when comparing a B from the internet it said W"
+-the program takes a long time to run (8 seconds on my Macbook Air)
+-Bugs Fixed:
+-Made percentError more efficient
+-Made booleanCharacters automatically rescale images
+-Goals:
+-improve speed
+
 05/18/2016:
 -Ely Sandine
 -New Features:
