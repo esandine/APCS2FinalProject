@@ -12,7 +12,7 @@ public class ReadImage{
     private int width;
     private Pixel bgC;
     private BufferedImage symbol;
-    public static boolean debug = true;
+    public static boolean debug = false;
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
@@ -177,7 +177,7 @@ public class ReadImage{
 		}
 	    }
 	}
-	System.out.println("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
+	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
     }
     public void outPut(String s){
