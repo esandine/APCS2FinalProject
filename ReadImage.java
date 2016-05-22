@@ -12,6 +12,7 @@ public class ReadImage{
     private int width;
     private Pixel bgC;
     private BufferedImage symbol;
+    public static boolean debug = true;
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
@@ -164,6 +165,7 @@ public class ReadImage{
 	}
     }
     public boolean[][]toBoolean(){
+	double t1 = System.currentTimeMillis();
 	setBlackAndWhite();
 	boolean[][]retArray=new boolean[pixelRGBValues.length][pixelRGBValues[0].length];
 	for(int r = 0;r<retArray.length;r++){
@@ -175,6 +177,7 @@ public class ReadImage{
 		}
 	    }
 	}
+	System.out.println("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
     }
     public void outPut(String s){
@@ -210,6 +213,11 @@ public class ReadImage{
 		r1.image.getScaledInstance(1618,1000,Image.SCALE_SMOOTH);
 	    }
 	    System.out.println("Fast"+(System.currentTimeMillis()-time));
+	}
+    }
+    public static void debug(Object o){
+	if(debug){
+	    System.out.println(o);
 	}
     }
 }
