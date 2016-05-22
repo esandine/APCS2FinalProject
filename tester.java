@@ -6,7 +6,7 @@ public class tester{
 	    img.setBlackAndWhite();
 	    img.scaleImage();
 	    booleanArray comp = new booleanArray(img.toBoolean());
-	    System.out.println(chars.compareTo(comp, 70));
+	    System.out.println(chars.toString(comp, 20));
 	}
     }
 }

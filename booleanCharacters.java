@@ -5,18 +5,17 @@ public class booleanCharacters{
     private String[] charStrings;
     private booleanArray[] booleanArrs;
     private String directory;
+    private int index = 0;
     public booleanCharacters(String dir){
 	File in = new File(dir);
 	String[] charImages = in.list();
 	chars = new ReadImage[charImages.length];
 	charStrings = new String[charImages.length];
 	booleanArrs = new booleanArray[chars.length];
-	System.out.println("scaling images");
 	for(int i = 0; i < chars.length; i++){
 	    chars[i] = new ReadImage(dir + charImages[i]);
-	    chars[i].scaleImage();
 	}
-	System.out.println("changing too booleans");
+	System.out.println("changing to booleans");
 	for(int i = 0; i < chars.length; i++){
 	    booleanArrs[i] = new booleanArray(chars[i].toBoolean());
 	}
@@ -28,9 +27,17 @@ public class booleanCharacters{
     public boolean compareTo(booleanArray other, double percent){
 	for(int i = 0; i < booleanArrs.length; i++){
 	    if(booleanArrs[i].compareTo(other, percent)){
+		index = i;
 		return true;
+	     
 	    }
 	}
 	return false;
+    }
+    public String toString(booleanArray other, double percent){
+	if(compareTo(other, percent)){
+	    return charStrings[index];
+	}
+	return "no matches found";
     }
 }
