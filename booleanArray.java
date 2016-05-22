@@ -1,10 +1,13 @@
+import java.util.Hashtable;
 public class booleanArray{
     private boolean[][]data;
+    private Hashtable<booleanArray,String> characters;
     public booleanArray(boolean[][]data){
 	setData(data);
     }
     public booleanArray(){
 	data=new boolean[1618][1000];
+	characters = new Hashtable<booleanArray,String>();
 	for(int i = 0; i<1618000;i++){
 	    data[i/1000][i%1000]=false;
 	}
@@ -20,6 +23,14 @@ public class booleanArray{
 	    throw new IllegalArgumentException();
 	}
 	this.data=data;
+	characters = new Hashtable<booleanArray,String>();
+    }
+    public void loadDirectory(String dir){
+	booleanCharacters b = new booleanCharacters(dir);
+	Hashtable<booleanArray,String> h = b.toHashtable();
+	for(booleanArray a : h.keySet()){
+	    characters.put(a,h.get(a));
+	}
     }
     public boolean compareTo(booleanArray other, double percent){
 	double failuresLeft = percent * 16180;

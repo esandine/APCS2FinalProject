@@ -22,7 +22,7 @@ public class booleanArray{
 	this.data=data;
     }
     public boolean compareTo(booleanArray other, double percent){
-	double failuresLeft = percent * 1618000;
+	double failuresLeft = percent * 16180;
 	for(int r = 0;r < data.length;r++){
 	    for(int c = 0; c < data[0].length;c++){
 		if(getValue(r,c)!=other.getValue(r,c)){
@@ -32,11 +32,11 @@ public class booleanArray{
 	}
 	return failuresLeft>=0;
     }
-    public double percentError(booleanArray(other)){
+    public double percentError(booleanArray other){
 	double max = 100;
 	double min = 0;
 	while(max-min>.000001){
-            if(compare(other, (max+min)/2)){
+            if(compareTo(other, (max+min)/2)){
 		max=(max+min)/2;
             }
             else{
