@@ -12,10 +12,18 @@ public class booleanCharacters{
 	charStrings = new String[charImages.length];
 	booleanArrs = new booleanArray[chars.length];
 	for(int i = 0; i < chars.length; i++){
-	    chars[i] = new ReadImages(dir + charImages[i]);
+	    chars[i] = new ReadImage(dir + charImages[i]);
 	    chars[i].scaleImage();
-	    booleanArrs[i] = new booleanArrs(chars[i].toBoolean());
-	    charStrings[i] = charImages[i].substring(0, charImages[i].length - 4);
+	    booleanArrs[i] = new booleanArray(chars[i].toBoolean());
+	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);
 	}
+    }
+    public boolean compareTo(booleanArray other, double percent){
+	for(int i = 0; i < booleanArrs.length; i++){
+	    if(booleanArrs[i].compareTo(other, percent)){
+		return true;
+	    }
+	}
+	return false;
     }
 }

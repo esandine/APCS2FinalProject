@@ -11,10 +11,17 @@ public class booleanCharacters{
 	chars = new ReadImage[charImages.length];
 	charStrings = new String[charImages.length];
 	booleanArrs = new booleanArray[chars.length];
+	System.out.println("scaling images");
 	for(int i = 0; i < chars.length; i++){
 	    chars[i] = new ReadImage(dir + charImages[i]);
 	    chars[i].scaleImage();
+	}
+	System.out.println("changing too booleans");
+	for(int i = 0; i < chars.length; i++){
 	    booleanArrs[i] = new booleanArray(chars[i].toBoolean());
+	}
+	System.out.println("making string values for images");
+	for(int i = 0; i < charImages.length; i++){
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);
 	}
     }
