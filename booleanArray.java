@@ -54,4 +54,16 @@ public class booleanArray{
 	}
 	return retValue/16180;
     }
+    public String closestMatch(){
+	double max = 100;
+	String retStr = "";
+	for(booleanArray other : characters.keySet()){
+	    double error = percentError(other);
+	    if(error<max){
+		max = error;
+		retStr = characters.get(other);
+	    }
+	}
+	return retStr;
+    }
 }

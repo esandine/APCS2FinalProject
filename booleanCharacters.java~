@@ -1,5 +1,5 @@
 import java.io.File;
-
+import java.util.Hashtable;
 public class booleanCharacters{
     private ReadImage[] chars;
     private String[] charStrings;
@@ -24,6 +24,13 @@ public class booleanCharacters{
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);
 	   
 	}
+    }
+    public Hashtable<booleanArray,String> toHashtable(){
+	Hashtable<booleanArray,String> retHashtable = new Hashtable<booleanArray,String>(booleanArrs.length);
+	for(int i = 0;i<booleanArrs.length;i++){
+	    retHashtable.put(booleanArrs[i],charStrings[i]);
+	}
+	return retHashtable;
     }
     public boolean compareTo(booleanArray other, double percent){
 	for(int i = 0; i < booleanArrs.length; i++){
