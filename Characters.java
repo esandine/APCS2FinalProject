@@ -40,7 +40,7 @@ public class Characters{
     }
     public static void main(String[] args){
 	
-	    Characters rescaling = new Characters("results/", "test/");
+	    Characters rescaling = new Characters("alphabet/", "rescaledAlpha/");
 	     rescaling.rescale();
 	    rescaling.recolorDir();
 	    
