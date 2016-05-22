@@ -11,7 +11,7 @@ public class tester{
 	    Read.debug("Reading one file: "+((t2-t1)/1000));
 	    Read.debug("loading directory: "+((t3-t2)/1000));
 	    Read.debug("Total: "+(System.currentTimeMillis()-t1)/1000);*/
-	    Read.rescale(args[0]);
+	    Read.rescaleDir(args[0]);
 	}
     }
 }

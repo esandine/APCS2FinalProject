@@ -1,3 +1,4 @@
+import java.io.File;
 public class Read{
     private static boolean debug = false;
     //A class of static methods
@@ -17,6 +18,14 @@ public class Read{
 	ReadImage input = new ReadImage(image);
 	input.scaleImage();
 	input.outPut(image);
+    }
+    public static void rescaleDir(String dir){
+        File in = new File(dir);
+        String[] charImages = in.list();
+	for(int i = 0;i<charImages.length;i++){
+	    System.out.println(charImages[i]);
+	    rescale(dir+charImages[i]);
+	}
     }
     //Compares two images given the image names and the percent error needed
     public static boolean compare(String image1, String image2, double percentError){
