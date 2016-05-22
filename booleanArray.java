@@ -19,7 +19,7 @@ public class booleanArray{
 	return data;
     }
     public void setData(boolean[][]data){
-	if(!((data.length==1618)&&(data[0].length==1000))){
+	if(!((data.length==162)&&(data[0].length==100))){
 	    throw new IllegalArgumentException();
 	}
 	this.data=data;
@@ -33,7 +33,7 @@ public class booleanArray{
 	}
     }
     public boolean compareTo(booleanArray other, double percent){
-	double failuresLeft = percent * 16180;
+	double failuresLeft = percent * 161.8;
 	for(int r = 0;r < data.length;r++){
 	    for(int c = 0; c < data[0].length;c++){
 		if(getValue(r,c)!=other.getValue(r,c)){
@@ -52,7 +52,7 @@ public class booleanArray{
 		}
 	    }
 	}
-	return retValue/16180;
+	return retValue/161.8;
     }
     public String closestMatch(){
 	double max = 100;

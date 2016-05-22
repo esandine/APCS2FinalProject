@@ -49,7 +49,7 @@ public class ReadImage{
     }
     //Scales to golden ratio
     public void scaleImage(){
-	scaleImage(1618,1000);
+	scaleImage(162,100);
     }
     //finds the background color
     private void getBG(){
