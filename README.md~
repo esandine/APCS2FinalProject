@@ -21,6 +21,7 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Made percentError more efficient
 -Made booleanCharacters automatically rescale images
+-Determined the problem is scaling
 -Goals:
 -improve speed
 
