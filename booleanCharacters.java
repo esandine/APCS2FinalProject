@@ -18,10 +18,10 @@ public class booleanCharacters{
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);	   
 	}
     }
-    public Hashtable<booleanArray,String> toHashtable(){
+    public Hashtable<booleanArray,String> toHashtable(String dir){
 	Hashtable<booleanArray,String> retHashtable = new Hashtable<booleanArray,String>(booleanArrs.length);
 	for(int i = 0;i<booleanArrs.length;i++){
-	    retHashtable.put(booleanArrs[i],charStrings[i]);
+	    retHashtable.put(booleanArrs[i],dir+charStrings[i]);
 	}
 	return retHashtable;
     }

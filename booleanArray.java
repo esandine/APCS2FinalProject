@@ -36,7 +36,7 @@ public class booleanArray{
     }
     public void loadDirectory(String dir){
 	booleanCharacters b = new booleanCharacters(dir);
-	Hashtable<booleanArray,String> h = b.toHashtable();
+	Hashtable<booleanArray,String> h = b.toHashtable(dir);
 	for(booleanArray a : h.keySet()){
 	    characters.put(a,h.get(a));
 	}
