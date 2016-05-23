@@ -14,7 +14,7 @@ public class DemoDriver{
 	    }
 	}
 	booleanArray myImage = Read.loadBoolean(inputFile, true);
-	myImage.loadDirectory("characters/");
+	myImage.loadCharacters();
 	System.out.println(myImage.closestMatch());
     }
 }
