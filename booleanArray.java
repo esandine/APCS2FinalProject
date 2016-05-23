@@ -1,4 +1,5 @@
 import java.util.Hashtable;
+import java.io.File;
 public class booleanArray{
     private boolean[][]data;
     private Hashtable<booleanArray,String> characters;
@@ -24,6 +25,14 @@ public class booleanArray{
 	}
 	this.data=data;
 	characters = new Hashtable<booleanArray,String>();
+    }
+    public void loadCharacters(){
+	File in = new File("characters/");
+	String[] fonts = in.list();
+	for(int i = 0; i < fonts.length; i++){
+	    System.out.println(fonts[i]);
+	    loadDirectory("characters/"+fonts[i]+"/");
+	}
     }
     public void loadDirectory(String dir){
 	booleanCharacters b = new booleanCharacters(dir);
