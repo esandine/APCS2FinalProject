@@ -11,7 +11,6 @@ public class booleanCharacters{
 	charStrings = new String[charImages.length];
 	booleanArrs = new booleanArray[charStrings.length];
 	for(int i = 0; i < booleanArrs.length; i++){
-	    System.out.println(dir+charImages[i]);
 	    booleanArrs[i] = Read.loadBoolean(dir + charImages[i],false);
 	}
 	for(int i = 0; i < charImages.length; i++){

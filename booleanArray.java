@@ -30,13 +30,12 @@ public class booleanArray{
 	File in = new File("characters/");
 	String[] fonts = in.list();
 	for(int i = 0; i < fonts.length; i++){
-	    System.out.println(fonts[i]);
 	    loadDirectory("characters/"+fonts[i]+"/");
 	}
     }
     public void loadDirectory(String dir){
 	booleanCharacters b = new booleanCharacters(dir);
-	Hashtable<booleanArray,String> h = b.toHashtable(dir);
+	Hashtable<booleanArray,String> h = b.toHashtable(dir.substring(11));
 	for(booleanArray a : h.keySet()){
 	    characters.put(a,h.get(a));
 	}
