@@ -1,0 +1,27 @@
+//For use in rotating coordinates
+public class Polar{
+    private double radius;
+    private double angle;
+    public void setRadius(double r){
+	radius = r;
+    }
+    public void setAngle(double a){
+	angle = a;
+    }
+    public double getAngle(){
+	return angle;
+    }
+    public int getXcor(){
+	return (int)(radius*Math.cos(angle));
+    }
+    public int getYcor(){
+	return (int)(radius*Math.sin(angle));
+    }
+    public Polar(int x, int y){
+	setRadius(Math.sqrt(Math.pow(x,2),Math.pow(y,2)));
+	setAngle(atan(y/x));
+    }
+    public void rotate(double rad){
+	setAngle(
+    }
+}
