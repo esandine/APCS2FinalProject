@@ -20,9 +20,9 @@ public class booleanArray{
 	return data;
     }
     public void setData(boolean[][]data){
-	if(!((data.length==162)&&(data[0].length==100))){
-	    throw new IllegalArgumentException();
-	}
+	//if(!((data.length==162)&&(data[0].length==100))){
+	//    throw new IllegalArgumentException();
+	//}
 	this.data=data;
 	characters = new Hashtable<booleanArray,String>();
     }
@@ -62,6 +62,18 @@ public class booleanArray{
 	}
 	return retValue/161.8;
     }
+    //Scales up a boolean array horizontally
+    public boolean scaleRowsUp(int newH){
+	boolean[][]newData = new boolean[newH][data[0].length];
+	double scaleFactor = (newH+0.0)/data.length;
+	for(int r = 0;r<newData.length;r++){
+	    for(int c = 0; c<newData[0].length; c++){
+		newData[r][c]=data[(int)(r/scaleFactor)][c];
+	    }
+	}
+	data=newData;
+	return true;
+    }
     public String closestMatch(){
 	double max = 100;
 	String retStr = "";
@@ -73,5 +85,23 @@ public class booleanArray{
 	    }
 	}
 	return retStr;
+    }
+    public String toString(){
+	String retStr = "";
+	for(int r = 0; r<data.length; r++){
+	    for(int c = 0; c<data[0].length;c++){
+		retStr+=data[r][c];
+		retStr+=" ";
+	    }
+	    retStr+="\n";
+	}
+	return retStr;
+    }
+    public static void main(String[]args){
+	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
+	booleanArray b2 = new booleanArray(data);
+	System.out.println(b2);
+	b2.scaleRowsUp(11);
+	System.out.println(b2);
     }
 }

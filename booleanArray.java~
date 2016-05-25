@@ -1,4 +1,5 @@
 import java.util.Hashtable;
+import java.io.File;
 public class booleanArray{
     private boolean[][]data;
     private Hashtable<booleanArray,String> characters;
@@ -19,21 +20,28 @@ public class booleanArray{
 	return data;
     }
     public void setData(boolean[][]data){
-	if(!((data.length==1618)&&(data[0].length==1000))){
-	    throw new IllegalArgumentException();
-	}
+	//if(!((data.length==162)&&(data[0].length==100))){
+	//    throw new IllegalArgumentException();
+	//}
 	this.data=data;
 	characters = new Hashtable<booleanArray,String>();
     }
+    public void loadCharacters(){
+	File in = new File("characters/");
+	String[] fonts = in.list();
+	for(int i = 0; i < fonts.length; i++){
+	    loadDirectory("characters/"+fonts[i]+"/");
+	}
+    }
     public void loadDirectory(String dir){
 	booleanCharacters b = new booleanCharacters(dir);
-	Hashtable<booleanArray,String> h = b.toHashtable();
+	Hashtable<booleanArray,String> h = b.toHashtable(dir.substring(11));
 	for(booleanArray a : h.keySet()){
 	    characters.put(a,h.get(a));
 	}
     }
     public boolean compareTo(booleanArray other, double percent){
-	double failuresLeft = percent * 16180;
+	double failuresLeft = percent * 161.8;
 	for(int r = 0;r < data.length;r++){
 	    for(int c = 0; c < data[0].length;c++){
 		if(getValue(r,c)!=other.getValue(r,c)){
@@ -52,7 +60,19 @@ public class booleanArray{
 		}
 	    }
 	}
-	return retValue/16180;
+	return retValue/161.8;
+    }
+    //Scales up a boolean array horizontally
+    public boolean scaleRowsUp(int newH){
+	boolean[][]newData = new boolean[newH][data[0].length];
+	float scaleFactor = (newH+0.0)/data.length;
+	for(int r = 0;r<newData.length;r++){
+	    for(int c = 0; c<newData[0].length; c++){
+		newData[r][c]=data[Math.round(r/scaleFactor)][c];
+	    }
+	}
+	data=newData;
+	return true;
     }
     public String closestMatch(){
 	double max = 100;
@@ -65,5 +85,19 @@ public class booleanArray{
 	    }
 	}
 	return retStr;
+    }
+    public String toString(){
+	String retStr = ""
+	for(int r = 0; r<data.length; r++){
+	    for(int c = 0; c<data[0].length;c++){
+		retStr+=data[r][c];
+		retStr+=" ";
+	    }
+	    retStr+="\n";
+	}
+    }
+    public static void main(String[]args){
+	booleanArray b2 = new booleanArray({{true,false,true},{false,true,false},{true,false,true}});
+	System.out.println(b2);
     }
 }
