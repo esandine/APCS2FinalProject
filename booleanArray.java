@@ -62,8 +62,8 @@ public class booleanArray{
 	}
 	return retValue/161.8;
     }
-    //Scales up a boolean array horizontally
-    public boolean scaleRowsUp(int newH){
+    //Scales rows
+    public boolean scaleRows(int newH){
 	boolean[][]newData = new boolean[newH][data[0].length];
 	double scaleFactor = (newH+0.0)/data.length;
 	for(int r = 0;r<newData.length;r++){
@@ -74,6 +74,20 @@ public class booleanArray{
 	data=newData;
 	return true;
     }
+
+    //Scales cols
+    public boolean scaleCols(int newH){
+	boolean[][]newData = new boolean[data.length][newH];
+	double scaleFactor = (newH+0.0)/data[0].length;
+	for(int r = 0;r<newData.length;r++){
+	    for(int c = 0; c<newData[0].length; c++){
+		newData[r][c]=data[r][(int)(c/scaleFactor)];
+	    }
+	}
+	data=newData;
+	return true;
+    }
+
     public String closestMatch(){
 	double max = 100;
 	String retStr = "";
@@ -101,7 +115,9 @@ public class booleanArray{
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
 	booleanArray b2 = new booleanArray(data);
 	System.out.println(b2);
-	b2.scaleRowsUp(11);
+	b2.scaleRows(9);
+	System.out.println(b2);
+	b2.scaleCols(9);
 	System.out.println(b2);
     }
 }
