@@ -11,17 +11,16 @@ public class booleanCharacters{
 	charStrings = new String[charImages.length];
 	booleanArrs = new booleanArray[charStrings.length];
 	for(int i = 0; i < booleanArrs.length; i++){
-	    System.out.println(dir+charImages[i]);
 	    booleanArrs[i] = Read.loadBoolean(dir + charImages[i],false);
 	}
 	for(int i = 0; i < charImages.length; i++){
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);	   
 	}
     }
-    public Hashtable<booleanArray,String> toHashtable(){
+    public Hashtable<booleanArray,String> toHashtable(String dir){
 	Hashtable<booleanArray,String> retHashtable = new Hashtable<booleanArray,String>(booleanArrs.length);
 	for(int i = 0;i<booleanArrs.length;i++){
-	    retHashtable.put(booleanArrs[i],charStrings[i]);
+	    retHashtable.put(booleanArrs[i],dir+charStrings[i]);
 	}
 	return retHashtable;
     }

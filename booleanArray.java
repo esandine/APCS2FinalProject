@@ -16,13 +16,16 @@ public class booleanArray{
     public boolean getValue(int r, int c){
 	return data[r][c];
     }
+    public int getRows(){
+	return data.length;
+    }
+    public int getCols(){
+	return data[0].length;
+    }
     public boolean[][] getData(){
 	return data;
     }
     public void setData(boolean[][]data){
-	//if(!((data.length==162)&&(data[0].length==100))){
-	//    throw new IllegalArgumentException();
-	//}
 	this.data=data;
 	characters = new Hashtable<booleanArray,String>();
     }
@@ -52,6 +55,7 @@ public class booleanArray{
 	return failuresLeft>=0;
     }
     public double percentError(booleanArray other){
+	scaleToFit(other);
 	double retValue = 0;
 	for(int r = 0;r < data.length;r++){
 	    for(int c = 0; c < data[0].length;c++){
@@ -60,7 +64,7 @@ public class booleanArray{
 		}
 	    }
 	}
-	return retValue/161.8;
+	return 100*retValue/(getRows()*getCols());
     }
     //Scales rows
     public boolean scaleRows(int newH){
@@ -87,7 +91,17 @@ public class booleanArray{
 	data=newData;
 	return true;
     }
-
+    public void scale(int r, int c){
+	scaleRows(r);
+	scaleCols(c);
+    }
+    //Makes two boolean arrays the same size
+    public void scaleToFit(booleanArray other){
+	int rows = Math.min(other.getRows(),getRows());
+	int cols = Math.min(other.getCols(),getCols());
+	scale(rows,cols);
+	other.scale(rows,cols);
+    }
     public String closestMatch(){
 	double max = 100;
 	String retStr = "";
