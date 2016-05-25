@@ -95,6 +95,19 @@ public class booleanArray{
 	scaleRows(r);
 	scaleCols(c);
     }
+    //Rotates the boolean Array
+    public void rotate(double degrees){
+	boolean[][]newData = new boolean[data.length][data[0]];
+	centerX = data.length/2;
+	centerY = data[0].length/2;
+	double distance = 0;
+	for(int r = 0; r< data.length; r++){
+	    for(int c = 0; c< data[0].length; c++){
+		distance = Math.sqrt(Math.pow(r-centerX,2)+Math.pow(c-centerY,2));
+		newData[r][c] = newData[(int)(x*Math.cos(degrees)-c*Math.sin(degrees))]
+	    }
+	}
+    }
     //Makes two boolean arrays the same size
     public void scaleToFit(booleanArray other){
 	int rows = Math.min(other.getRows(),getRows());
