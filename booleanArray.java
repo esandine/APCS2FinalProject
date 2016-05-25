@@ -105,10 +105,22 @@ public class booleanArray{
 	    for(int c = 0; c< data[0].length; c++){
 		p=new Polar(r-centerX,c-centerY);
 		p.rotate(rad);
-		newData[r][c] = data[Math.min(centerX+p.getXcor(),8)]
-		    [Math.min(centerY+p.getYcor(),8)];
+		int newR = centerX+p.getXcor();
+		if(newR<0){
+		    newR = 0;
+		}else if(newR>=data.length){
+		    newR = data.length-1;
+		}
+		int newC = centerY+p.getYcor();
+		if(newC<0){
+		    newC = 0;
+		}else if(newC>=data[0].length){
+		    newC = data[0].length-1;
+		}
+		newData[r][c] = data[newR][newC];
 	    }
 	}
+	data=newData;
     }
     //Makes two boolean arrays the same size
     public void scaleToFit(booleanArray other){
@@ -133,7 +145,11 @@ public class booleanArray{
 	String retStr = "";
 	for(int r = 0; r<data.length; r++){
 	    for(int c = 0; c<data[0].length;c++){
-		retStr+=data[r][c];
+		if(data[r][c]){
+		    retStr+="X";
+		}else{
+		    retStr+="_";
+		}
 		retStr+=" ";
 	    }
 	    retStr+="\n";
@@ -149,7 +165,7 @@ public class booleanArray{
 	System.out.println(b2);
 	b2.scaleCols(9);
 	System.out.println(b2);
-	b2.rotate(Math.PI/2);
+	b2.rotate(Math.PI);
 	System.out.println(b2);
     }
 }
