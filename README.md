@@ -10,6 +10,18 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/24/2016:
+-Ely Sandine
+-New Features:
+-booleanArrays are now scalable
+-no more rescaling of image files, only boolean arrays
+-Bugs Added:
+-Potentially less accurate with a very simple scaling method
+-Bugs Fixed:
+-faster
+-Goals
+-rotating
+
 05/22/2016:
 -Ely Sandine
 -New Features:

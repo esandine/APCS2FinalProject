@@ -15,15 +15,18 @@ xx/xx/xxxx:
 -New Features:
 -Used booleanCharacter class to make loadDirectory which converts all files in a directory to a hashtable with the booleanArray of the picture and a string with the name
 -added closestMatch() which compares the booleanArray to all the other characters to find which character it is
+-rescale class rescales images
 -Bugs Added:
 -closestMatch is not very accurate (when comparing a B from the internet it said W"
--the program takes a long time to run (8 seconds on my Macbook Air)
 -Bugs Fixed:
 -Made percentError more efficient
 -Made booleanCharacters automatically rescale images
 -Determined the problem is scaling
+-Made the program run much faster
 -Goals:
 -improve speed
+-improve accuracy
+-be able to identify letters
 
 05/18/2016:
 -Ely Sandine
