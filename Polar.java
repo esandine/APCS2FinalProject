@@ -27,7 +27,12 @@ public class Polar{
     }
     //Constructors
     public Polar(int x, int y){
-	setRadius(Math.sqrt(Math.pow(x,2),Math.pow(y,2)));
-	setAngle(atan(y/x));
+	if(x==0){
+	    setRadius(y);
+	    setAngle(Math.PI/2);
+	}else{
+	    setRadius(Math.sqrt(Math.pow(x,2)+Math.pow(y,2)));
+	    setAngle(Math.atan(y/x));
+	}
     }
 }

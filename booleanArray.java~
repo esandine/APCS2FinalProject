@@ -103,7 +103,8 @@ public class booleanArray{
 	double distance = 0;
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
-		newData[r][c] = newData[
+		distance = Math.sqrt(Math.pow(r-centerX,2)+Math.pow(c-centerY,2));
+		newData[r][c] = newData[(int)(x*Math.cos(degrees)-c*Math.sin(degrees))]
 	    }
 	}
     }

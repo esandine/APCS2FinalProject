@@ -96,15 +96,17 @@ public class booleanArray{
 	scaleCols(c);
     }
     //Rotates the boolean Array
-    public void rotate(double degrees){
-	boolean[][]newData = new boolean[data.length][data[0]];
-	centerX = data.length/2;
-	centerY = data[0].length/2;
-	double distance = 0;
+    public void rotate(double rad){
+	boolean[][]newData = new boolean[data.length][data[0].length];
+	int centerX = data.length/2;
+	int centerY = data[0].length/2;
+	Polar p;
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
-		distance = Math.sqrt(Math.pow(r-centerX,2)+Math.pow(c-centerY,2));
-		newData[r][c] = newData[(int)(x*Math.cos(degrees)-c*Math.sin(degrees))]
+		p=new Polar(r-centerX,c-centerY);
+		p.rotate(rad);
+		newData[r][c] = data[Math.min(centerX+p.getXcor(),8)]
+		    [Math.min(centerY+p.getYcor(),8)];
 	    }
 	}
     }
@@ -140,11 +142,14 @@ public class booleanArray{
     }
     public static void main(String[]args){
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
-	booleanArray b2 = new booleanArray(data);
+	boolean[][]data2={{true,true},{false,false}};
+	booleanArray b2 = new booleanArray(data2);
 	System.out.println(b2);
 	b2.scaleRows(9);
 	System.out.println(b2);
 	b2.scaleCols(9);
+	System.out.println(b2);
+	b2.rotate(Math.PI/2);
 	System.out.println(b2);
     }
 }
