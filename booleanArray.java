@@ -154,6 +154,70 @@ public class booleanArray{
 	}
 	return retStr;
     }
+    public int getFirstBoolean(boolean Start,boolean row){
+	int start = 0;
+	boolean notOver = true;
+	while(notOver){
+	    if(Start&&row){
+		for(int i = 0; i<data[start].length; i++){
+		    if(data[start][i]==true){
+			notOver = false;
+		    }
+		}
+		if(notOver){
+		    start++;
+		}
+	    }else if(Start){
+		for(int i = 0; i<data.length; i++){
+		    if(data[i][start]==true){
+			notOver = false;
+		    }
+		}
+		if(notOver){
+		    start++;
+		}
+	    }else if(row){
+		start=data.length-1;
+		for(int i = data[start].length-1; i>0; i--){
+		    if(data[start][i]==true){
+			notOver = false;
+		    }
+		}
+		if(notOver){
+		    start--;
+		}
+	    }else{
+		start=data[0].length-1;
+		for(int i = data.length-1; i>0; i--){
+		    if(data[i][start]==true){
+			notOver = false;
+		    }
+		}
+		if(notOver){
+		    start--;
+		}
+	    }
+	}
+	return start;
+    }
+    public void trim(){
+	int startRow = getFirstBoolean(true,true);
+	System.out.println("Passed");
+	int endRow = getFirstBoolean(false,true);
+	System.out.println("Passed");
+	int startCol = getFirstBoolean(true,false);
+	System.out.println("Passed");
+	int endCol = getFirstBoolean(false,false);
+	System.out.println("Passed");
+	boolean[][] newData = new boolean[endRow-startRow+1][endCol-startCol+1];
+	for(int i = 0; i<newData.length; i++){
+	    for(int ii = 0; ii<newData.length; ii++){
+		newData[i][ii]=data[i+startRow][i+startCol];
+	    }
+	}
+	data = newData;
+
+    }
     public static void main(String[]args){
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
 	boolean[][]data2={{true,true},{false,false}};
@@ -163,9 +227,11 @@ public class booleanArray{
 	System.out.println(b2);
 	b2.scaleCols(9);
 	System.out.println(b2);
-	b2.rotate(Math.PI*.5);
+	b2.rotate(Math.PI*3/2);
 	//System.out.println(b2);
 	//b2.rotate(Math.PI/2);
+	System.out.println(b2);
+	b2.trim();
 	System.out.println(b2);
 	Polar p1 = new Polar(3,3);
 	System.out.println(p1.getAngle());

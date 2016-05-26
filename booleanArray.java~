@@ -163,7 +163,7 @@ public class booleanArray{
 	System.out.println(b2);
 	b2.scaleCols(9);
 	System.out.println(b2);
-	b2.rotate(Math.PI*2);
+	b2.rotate(Math.PI*.5);
 	//System.out.println(b2);
 	//b2.rotate(Math.PI/2);
 	System.out.println(b2);
