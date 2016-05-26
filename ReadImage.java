@@ -13,6 +13,21 @@ public class ReadImage{
     private Pixel bgC;
     private BufferedImage symbol;
     public static boolean debug = false;
+    public ReadImage(boolean[][] data){
+	height = data.length;
+	width = data[0].length;
+	image = new BufferedImage(width, height, 1);
+	for(int r = 0; r < height; r++){
+	    for(int c = 0; c < width; c++){
+		if(data[r][c]){
+		    pixelRGBValues[r][c].setColor(Color.black);
+		}
+		else{
+		    pixelRGBValues[r][c].setColor(Color.white);
+		}
+	    }
+	}
+    }
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
