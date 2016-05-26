@@ -25,6 +25,9 @@ public class Polar{
     public int getYcor(){
 	return (int)(radius*Math.sin(angle));
     }
+    public double getSlope(){
+	return (double)getYcor()/getXcor();
+    }
     //Constructors
     public Polar(int x, int y){
 	if(x==0){
@@ -32,7 +35,15 @@ public class Polar{
 	    setAngle(Math.PI/2);
 	}else{
 	    setRadius(Math.sqrt(Math.pow(x,2)+Math.pow(y,2)));
-	    setAngle(Math.atan(y/x));
+	    if(x>0&&y>=0){
+		setAngle(Math.atan(y/x));
+	    }else if(x>0&&y<0){
+		setAngle(Math.PI-Math.atan(y/x));
+	    }else if(x<0&&y<0){
+		setAngle(Math.atan(y/x)+Math.PI);
+	    }else{
+		setAngle(Math.PI*2-Math.atan(y/x));
+	    }
 	}
     }
 }

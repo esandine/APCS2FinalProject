@@ -106,17 +106,24 @@ public class booleanArray{
 		p=new Polar(r-centerX,c-centerY);
 		p.rotate(rad);
 		int newR = centerX+p.getXcor();
-		if(newR<0){
-		    newR = 0;
-		}else if(newR>=data.length){
-		    newR = data.length-1;
-		}
 		int newC = centerY+p.getYcor();
-		if(newC<0){
-		    newC = 0;
-		}else if(newC>=data[0].length){
-		    newC = data[0].length-1;
+		if(newR<0){
+		    newC-=newR*p.getSlope();
+		    newR-=newR;
 		}
+		if(newC<0){
+		    newR-=newC*p.getSlope();
+		    newC-=newC;
+		}
+		if(newR>data.length){
+		    newC-=(1+newR-data.length)*p.getSlope();
+		    newR=data.length-1;
+		}
+		if(newC>data[0].length){
+		    newR-=(1+newC-data[0].length)*p.getSlope();
+		    newC=data[0].length-1;
+		}
+		//To fix index out of bounds problems
 		newData[r][c] = data[newR][newC];
 	    }
 	}
@@ -165,7 +172,7 @@ public class booleanArray{
 	System.out.println(b2);
 	b2.scaleCols(9);
 	System.out.println(b2);
-	b2.rotate(Math.PI);
+	b2.rotate(Math.PI/2);
 	System.out.println(b2);
     }
 }
