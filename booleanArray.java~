@@ -16,13 +16,16 @@ public class booleanArray{
     public boolean getValue(int r, int c){
 	return data[r][c];
     }
+    public int getRows(){
+	return data.length;
+    }
+    public int getCols(){
+	return data[0].length;
+    }
     public boolean[][] getData(){
 	return data;
     }
     public void setData(boolean[][]data){
-	//if(!((data.length==162)&&(data[0].length==100))){
-	//    throw new IllegalArgumentException();
-	//}
 	this.data=data;
 	characters = new Hashtable<booleanArray,String>();
     }
@@ -52,6 +55,7 @@ public class booleanArray{
 	return failuresLeft>=0;
     }
     public double percentError(booleanArray other){
+	scaleToFit(other);
 	double retValue = 0;
 	for(int r = 0;r < data.length;r++){
 	    for(int c = 0; c < data[0].length;c++){
@@ -60,19 +64,70 @@ public class booleanArray{
 		}
 	    }
 	}
-	return retValue/161.8;
+	return 100*retValue/(getRows()*getCols());
     }
-    //Scales up a boolean array horizontally
-    public boolean scaleRowsUp(int newH){
+    //Scales rows
+    public boolean scaleRows(int newH){
 	boolean[][]newData = new boolean[newH][data[0].length];
-	float scaleFactor = (newH+0.0)/data.length;
+	double scaleFactor = (newH+0.0)/data.length;
 	for(int r = 0;r<newData.length;r++){
 	    for(int c = 0; c<newData[0].length; c++){
-		newData[r][c]=data[Math.round(r/scaleFactor)][c];
+		newData[r][c]=data[(int)(r/scaleFactor)][c];
 	    }
 	}
 	data=newData;
 	return true;
+    }
+
+    //Scales cols
+    public boolean scaleCols(int newH){
+	boolean[][]newData = new boolean[data.length][newH];
+	double scaleFactor = (newH+0.0)/data[0].length;
+	for(int r = 0;r<newData.length;r++){
+	    for(int c = 0; c<newData[0].length; c++){
+		newData[r][c]=data[r][(int)(c/scaleFactor)];
+	    }
+	}
+	data=newData;
+	return true;
+    }
+    public void scale(int r, int c){
+	scaleRows(r);
+	scaleCols(c);
+    }
+    //Rotates the boolean Array
+    public void rotate(double rad){
+	boolean[][]newData = new boolean[data.length][data[0].length];
+	int centerX = data.length/2;
+	int centerY = data[0].length/2;
+	Polar p;
+	for(int r = 0; r< data.length; r++){
+	    for(int c = 0; c< data[0].length; c++){
+		p=new Polar(r-centerX,c-centerY);
+		p.rotate(rad);
+		int newR = centerX+p.getXcor();
+		if(newR<0){
+		    newR = 0;
+		}else if(newR>=data.length){
+		    newR = data.length-1;
+		}
+		int newC = centerY+p.getYcor();
+		if(newC<0){
+		    newC = 0;
+		}else if(newC>=data[0].length){
+		    newC = data[0].length-1;
+		}
+		newData[r][c] = data[newR][newC];
+	    }
+	}
+	data=newData;
+    }
+    //Makes two boolean arrays the same size
+    public void scaleToFit(booleanArray other){
+	int rows = Math.min(other.getRows(),getRows());
+	int cols = Math.min(other.getCols(),getCols());
+	scale(rows,cols);
+	other.scale(rows,cols);
     }
     public String closestMatch(){
 	double max = 100;
@@ -87,17 +142,30 @@ public class booleanArray{
 	return retStr;
     }
     public String toString(){
-	String retStr = ""
+	String retStr = "";
 	for(int r = 0; r<data.length; r++){
 	    for(int c = 0; c<data[0].length;c++){
-		retStr+=data[r][c];
+		if(data[r][c]){
+		    retStr+="X";
+		}else{
+		    retStr+="_";
+		}
 		retStr+=" ";
 	    }
 	    retStr+="\n";
 	}
+	return retStr;
     }
     public static void main(String[]args){
-	booleanArray b2 = new booleanArray({{true,false,true},{false,true,false},{true,false,true}});
+	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
+	boolean[][]data2={{true,true},{false,false}};
+	booleanArray b2 = new booleanArray(data2);
+	System.out.println(b2);
+	b2.scaleRows(9);
+	System.out.println(b2);
+	b2.scaleCols(9);
+	System.out.println(b2);
+	b2.rotate(Math.PI);
 	System.out.println(b2);
     }
 }

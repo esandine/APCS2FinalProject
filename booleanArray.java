@@ -95,6 +95,40 @@ public class booleanArray{
 	scaleRows(r);
 	scaleCols(c);
     }
+    //Rotates the boolean Array
+    public void rotate(double rad){
+	boolean[][]newData = new boolean[data.length][data[0].length];
+	int centerX = data.length/2;
+	int centerY = data[0].length/2;
+	Polar p;
+	for(int r = 0; r< data.length; r++){
+	    for(int c = 0; c< data[0].length; c++){
+		p=new Polar(r-centerX,c-centerY);
+		p.rotate(rad);
+		int newR = centerX+p.getXcor();
+		int newC = centerY+p.getYcor();
+		if(newR<0){
+		    newC-=newR*p.getSlope();
+		    newR-=newR;
+		}
+		if(newC<0){
+		    newR-=newC*p.getSlope();
+		    newC-=newC;
+		}
+		if(newR>data.length){
+		    newC-=(1+newR-data.length)*p.getSlope();
+		    newR=data.length-1;
+		}
+		if(newC>data[0].length){
+		    newR-=(1+newC-data[0].length)*p.getSlope();
+		    newC=data[0].length-1;
+		}
+		//To fix index out of bounds problems
+		newData[r][c] = data[newR][newC];
+	    }
+	}
+	data=newData;
+    }
     //Makes two boolean arrays the same size
     public void scaleToFit(booleanArray other){
 	int rows = Math.min(other.getRows(),getRows());
@@ -118,7 +152,11 @@ public class booleanArray{
 	String retStr = "";
 	for(int r = 0; r<data.length; r++){
 	    for(int c = 0; c<data[0].length;c++){
-		retStr+=data[r][c];
+		if(data[r][c]){
+		    retStr+="X";
+		}else{
+		    retStr+="_";
+		}
 		retStr+=" ";
 	    }
 	    retStr+="\n";
@@ -127,11 +165,14 @@ public class booleanArray{
     }
     public static void main(String[]args){
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
-	booleanArray b2 = new booleanArray(data);
+	boolean[][]data2={{true,true},{false,false}};
+	booleanArray b2 = new booleanArray(data2);
 	System.out.println(b2);
 	b2.scaleRows(9);
 	System.out.println(b2);
 	b2.scaleCols(9);
+	System.out.println(b2);
+	b2.rotate(Math.PI/2);
 	System.out.println(b2);
     }
 }
