@@ -102,11 +102,13 @@ public class booleanArray{
 	Polar p = new Polar(centerX,centerY);
 	p.rotate(rad);
 	boolean[][]newData = new boolean[2*p.getRadiusInt()][2*p.getRadiusInt()];
-	double newCenterX = p.getRadiusInt();
-	double newCenterY = p.getRadiusInt();
+	double newCenterX = p.getRadiusInt()-.5;
+	double newCenterY = p.getRadiusInt()-.5;
 
 	System.out.println(centerX);
 	System.out.println(centerY);
+	System.out.println(newCenterX);
+	System.out.println(newCenterY);
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
 		p=new Polar(r-centerX,c-centerY);
@@ -161,9 +163,18 @@ public class booleanArray{
 	System.out.println(b2);
 	b2.scaleCols(9);
 	System.out.println(b2);
-	b2.rotate(0);
+	b2.rotate(Math.PI*2);
 	//System.out.println(b2);
 	//b2.rotate(Math.PI/2);
 	System.out.println(b2);
+	Polar p1 = new Polar(3,3);
+	System.out.println(p1.getAngle());
+	Polar p2 = new Polar(-3,3);
+	System.out.println(p2.getAngle());
+	Polar p3 = new Polar(-3,-3);
+	System.out.println(p3.getAngle());
+	Polar p4 = new Polar(3,-3);
+	System.out.println(p4.getAngle());
+	
     }
 }
