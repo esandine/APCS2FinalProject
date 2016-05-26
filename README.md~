@@ -10,6 +10,17 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/25/2016:
+-Ely Sandine
+-New Features:
+-added rotating by converting to polar coordinates then back into normal array
+-Bugs Added:
+-Rotating does not work and throws exception
+-Bugs Fixed:
+-none
+-Goals
+-Fix rotations
+
 05/24/2016:
 -Ely Sandine
 -New Features:
