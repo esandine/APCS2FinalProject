@@ -97,49 +97,23 @@ public class booleanArray{
     }
     //Rotates the boolean Array
     public void rotate(double rad){
-	boolean[][]newData = new boolean[data.length][data[0].length];
 	double centerX = data.length/2.0;
 	double centerY = data[0].length/2.0;
-	Polar p;
+	Polar p = new Polar(centerX,centerY);
+	p.rotate(rad);
+	boolean[][]newData = new boolean[2*p.getRadiusInt()][2*p.getRadiusInt()];
+	double newCenterX = p.getRadiusInt();
+	double newCenterY = p.getRadiusInt();
+
+	System.out.println(centerX);
+	System.out.println(centerY);
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
 		p=new Polar(r-centerX,c-centerY);
-		p.rotate(-rad);
-		int newR =(int) Math.round(centerX+p.getXcor());
-		int newC = (int) Math.round(centerY+p.getYcor());
-		/*
-		if(newR<0){
-		    newC-=newR*p.getSlope();
-		    newR-=newR;
-		}
-		if(newC<0){
-		    newR-=newC*p.getSlope();
-		    newC-=newC;
-		}
-		if(newR>data.length){
-		    newC-=(1+newR-data.length)*p.getSlope();
-		    newR=data.length-1;
-		}
-		if(newC>data[0].length){
-		    newR-=(1+newC-data[0].length)*p.getSlope();
-		    newC=data[0].length-1;
-		    }*/
-		//To fix index out of bounds problems
-		while((newC<0)||(newC>=data.length)||(newR<0)||(newR>=data[0].length)){
-		    if(newC<0){
-			newC++;
-		    }
-		    if(newC>=data[0].length){
-			newC--;
-		    }
-		    if(newR<0){
-			newR++;
-		    }
-		    if(newR>=data.length){
-			newR--;
-		    }
-		}
-		newData[r][c] = data[newR][newC];
+		p.rotate(rad);
+		int newR = (int) Math.round(newCenterX+p.getXcor());
+		int newC = (int) Math.round(newCenterY+p.getYcor());
+		newData[newR][newC] = data[r][c];
 	    }
 	}
 	data=newData;
@@ -186,10 +160,10 @@ public class booleanArray{
 	b2.scaleRows(9);
 	System.out.println(b2);
 	b2.scaleCols(9);
-	//System.out.println(b2);
-	//b2.rotate(0);
 	System.out.println(b2);
-	b2.rotate(Math.PI/2);
+	b2.rotate(0);
+	//System.out.println(b2);
+	//b2.rotate(Math.PI/2);
 	System.out.println(b2);
     }
 }

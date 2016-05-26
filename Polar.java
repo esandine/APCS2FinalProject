@@ -19,6 +19,9 @@ public class Polar{
     public double getRadius(){
 	return radius;
     }
+    public int getRadiusInt(){
+	return (int)getRadius();
+    }
     public int getXcor(){
 	return (int)(radius*Math.cos(angle));
     }
