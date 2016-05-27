@@ -114,11 +114,18 @@ public class booleanArray{
 		p=new Polar(r-centerX,c-centerY);
 		p.rotate(rad);
 		int newR = (int) Math.round(newCenterX+p.getXcor());
+		if(newR>=newData.length){
+		    newR=newData.length-1;
+		}
 		int newC = (int) Math.round(newCenterY+p.getYcor());
+		if(newC>=newData[0].length){
+		    newC=newData[0].length-1;
+		}
 		newData[newR][newC] = data[r][c];
 	    }
 	}
 	data=newData;
+	trim();
     }
     //Makes two boolean arrays the same size
     public void scaleToFit(booleanArray other){
@@ -155,7 +162,12 @@ public class booleanArray{
 	return retStr;
     }
     public int getFirstBoolean(boolean Start,boolean row){
-	int start = 0;
+        int start;
+	if(Start){
+	    start = 0;
+	}else{
+	    start=data.length-1;
+	}
 	boolean notOver = true;
 	while(notOver){
 	    if(Start&&row){
@@ -177,8 +189,7 @@ public class booleanArray{
 		    start++;
 		}
 	    }else if(row){
-		start=data.length-1;
-		for(int i = data[start].length-1; i>0; i--){
+		for(int i = 0; i<data[start].length; i++){
 		    if(data[start][i]==true){
 			notOver = false;
 		    }
@@ -187,7 +198,6 @@ public class booleanArray{
 		    start--;
 		}
 	    }else{
-		start=data[0].length-1;
 		for(int i = data.length-1; i>0; i--){
 		    if(data[i][start]==true){
 			notOver = false;
@@ -202,17 +212,13 @@ public class booleanArray{
     }
     public void trim(){
 	int startRow = getFirstBoolean(true,true);
-	System.out.println("Passed");
 	int endRow = getFirstBoolean(false,true);
-	System.out.println("Passed");
 	int startCol = getFirstBoolean(true,false);
-	System.out.println("Passed");
 	int endCol = getFirstBoolean(false,false);
-	System.out.println("Passed");
 	boolean[][] newData = new boolean[endRow-startRow+1][endCol-startCol+1];
 	for(int i = 0; i<newData.length; i++){
-	    for(int ii = 0; ii<newData.length; ii++){
-		newData[i][ii]=data[i+startRow][i+startCol];
+	    for(int ii = 0; ii<newData[i].length; ii++){
+		newData[i][ii]=data[i+startRow][ii+startCol];
 	    }
 	}
 	data = newData;
@@ -222,25 +228,12 @@ public class booleanArray{
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
 	boolean[][]data2={{true,true},{false,false}};
 	booleanArray b2 = new booleanArray(data2);
-	System.out.println(b2);
 	b2.scaleRows(9);
-	System.out.println(b2);
 	b2.scaleCols(9);
 	System.out.println(b2);
-	b2.rotate(Math.PI*3/2);
+	b2.rotate(Math.PI*3/4);
 	//System.out.println(b2);
 	//b2.rotate(Math.PI/2);
 	System.out.println(b2);
-	b2.trim();
-	System.out.println(b2);
-	Polar p1 = new Polar(3,3);
-	System.out.println(p1.getAngle());
-	Polar p2 = new Polar(-3,3);
-	System.out.println(p2.getAngle());
-	Polar p3 = new Polar(-3,-3);
-	System.out.println(p3.getAngle());
-	Polar p4 = new Polar(3,-3);
-	System.out.println(p4.getAngle());
-	
     }
 }

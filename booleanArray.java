@@ -111,17 +111,28 @@ public class booleanArray{
 	System.out.println(newCenterY);
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
-		p=new Polar(r-centerX,c-centerY);
-		p.rotate(rad);
-		int newR = (int) Math.round(newCenterX+p.getXcor());
-		if(newR>=newData.length){
-		    newR=newData.length-1;
+		if(data[r][c]){
+		    p=new Polar(r-centerX,c-centerY);
+		    p.rotate(rad);
+		    int newR = (int)(newCenterX+p.getXcor());
+		    if(newR>=newData.length){
+			newR=newData.length-1;
+		    }
+		    int newC = (int)(newCenterY+p.getYcor());
+		    if(newC>=newData[0].length){
+			newC=newData[0].length-1;
+		    }
+		    newData[newR][newC] = data[r][c];
+		    if((newR<data.length-1)&&(newC<data.length-1)){
+			newData[newR+1][newC+1] = data[r][c];
+		    }
+		    if(newR<data.length-1){
+			newData[newR+1][newC]=data[r][c];
+		    }
+		    if(newC<data.length-1){
+			newData[newR][newC+1]=data[r][c];
+		    }
 		}
-		int newC = (int) Math.round(newCenterY+p.getYcor());
-		if(newC>=newData[0].length){
-		    newC=newData[0].length-1;
-		}
-		newData[newR][newC] = data[r][c];
 	    }
 	}
 	data=newData;
