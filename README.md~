@@ -10,6 +10,18 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/26/2016:
+-Ely Sandine
+-New Features:
+-Rotation works by enlarging the image and spinning it
+-Bugs Added:
+-Need to full test rotating,
+-Some pixels disapper
+-Bugs Fixed:
+-Fixed the trig problems
+-Goals
+-Test rotating more,
+-make a program that cuts down the white space
 05/25/2016:
 -Ely Sandine
 -New Features:
