@@ -114,7 +114,13 @@ public class booleanArray{
 		p=new Polar(r-centerX,c-centerY);
 		p.rotate(rad);
 		int newR = (int) Math.round(newCenterX+p.getXcor());
+		if(newR>=newData.length){
+		    newR=newData.length-1;
+		}
 		int newC = (int) Math.round(newCenterY+p.getYcor());
+		if(newC>=newData[0].length){
+		    newC=newData[0].length-1;
+		}
 		newData[newR][newC] = data[r][c];
 	    }
 	}
