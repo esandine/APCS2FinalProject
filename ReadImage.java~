@@ -49,7 +49,7 @@ public class ReadImage{
     }
     //Scales to golden ratio
     public void scaleImage(){
-	scaleImage(1618,1000);
+	scaleImage(162,100);
     }
     //finds the background color
     private void getBG(){
@@ -180,8 +180,22 @@ public class ReadImage{
 	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
     }
-    public void outPut(String s){
+    //converts a 2d array of booleans to an image
+    public void toImage(boolean[][]barry){
+	pixelRGBValues = new Pixel[barry.length][barry[0].length];
+	for(int i = 0; i<barry.length; i++){
+	    for(int ii = 0; ii<barry[0].length; ii++){
+		if(barry[i][ii]){
+		    pixelRGBValues[i][ii] = new Pixel(Color.BLACK,i,ii);
+		}else{
+		    pixelRGBValues[i][ii] = new Pixel(Color.WHITE,i,ii);
+		}
+	    }
+	}
 	setRGBValues();
+	
+    }
+    public void outPut(String s){
 	try{
 	    ImageIO.write(image,"png",new File(s));
 	}catch(IOException e){
@@ -202,7 +216,7 @@ public class ReadImage{
     public static void main(String[]args){
 	if(args.length>1){
 	    ReadImage r1 = new ReadImage(args[0]);
-	    r1.setBlackAndWhite();
+	    r1.scaleImage();
 	    r1.outPut(args[1]);
 	}
 	else if(args.length>0){

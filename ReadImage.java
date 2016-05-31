@@ -24,6 +24,7 @@ public class ReadImage{
     }
     //The reverse of loadRGBValues() primarily used for testing
     private void setRGBValues(){
+	image = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
 		image.setRGB(c, height - r -1, pixelRGBValues[r][c].getColor().getRGB());
@@ -192,6 +193,8 @@ public class ReadImage{
 		}
 	    }
 	}
+	height = pixelRGBValues.length;
+	width = pixelRGBValues[0].length;
 	setRGBValues();
 	
     }
