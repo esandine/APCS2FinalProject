@@ -180,6 +180,21 @@ public class ReadImage{
 	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
     }
+    //converts a 2d array of booleans to an image
+    public void toImage(boolean[][]barry){
+	pixelRGBValues = new Pixel[barry.length][barry[0].length];
+	for(int i = 0; i<barry.length; i++){
+	    for(int ii = 0; ii<barry[0].length; ii++){
+		if(barry[i][ii]){
+		    pixelRGBValues[i][ii] = new Pixel(Color.BLACK,i,ii);
+		}else{
+		    pixelRGBValues[i][ii] = new Pixel(Color.WHITE,i,ii);
+		}
+	    }
+	}
+	setRGBValues();
+	
+    }
     public void outPut(String s){
 	try{
 	    ImageIO.write(image,"png",new File(s));
