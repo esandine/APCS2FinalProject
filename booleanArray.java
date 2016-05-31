@@ -175,10 +175,12 @@ public class booleanArray{
     }
     public int getFirstBoolean(boolean Start,boolean row){
         int start;
-	if(Start){
-	    start = 0;
+	if((!Start)&&row){
+	    start = data.length-1;
+	}else if(!Start){
+	    start=data[0].length-1;
 	}else{
-	    start=data.length-1;
+	    start=0;
 	}
 	boolean notOver = true;
 	while(notOver){
@@ -210,7 +212,7 @@ public class booleanArray{
 		    start--;
 		}
 	    }else{
-		for(int i = data.length-1; i>0; i--){
+		for(int i = 0; i<data.length; i++){
 		    if(data[i][start]==true){
 			notOver = false;
 		    }

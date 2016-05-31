@@ -3,8 +3,10 @@ public class rescale{
 	if(args.length>0){
 	    if(args[0].charAt(args[0].length()-1)=='/'){
 		Read.rescaleDir(args[0]);
+		Read.trimDir(args[0]);
 	    }else{
 		Read.rescale(args[0]);
+		Read.trim(args[0]);
 	    }
 	}
     }
