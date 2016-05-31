@@ -12,6 +12,7 @@ public class booleanArray{
 	for(int i = 0; i<1618000;i++){
 	    data[i/1000][i%1000]=false;
 	}
+	trim();
     }
     public boolean getValue(int r, int c){
 	return data[r][c];
