@@ -13,15 +13,24 @@ public class ReadBlock{
 	symbols = new ArrayList<ReadImage>();
     }
     public void removeSymbols(){
-	int currentC = 0;
 	boolean[][] oriImg = booleanImage.getData();
 	for(int c = 0; c < oriImg[0].length; c++){
-	    int[] dim = findDim(currentC);
-	    for(int r = 0; c < oriImg.length;r++){
-		ReadImage curr = new ReadImage(removeSymbol(dim[0], dim[1], dim[2], dim[3]));
-		symbols.add(curr);
+	    //System.out.println("1");
+	    for(int r = 0; r < oriImg.length;r++){
+		if(oriImg[r][c] = true){
+		    int[] dim = findDim(c,r);
+		    //System.out.println("" + dim[0] + " " + dim[1] + " " + dim[2] + " " + dim[3]);
+		    boolean[][] arr = removeSymbol(dim[0], dim[1], dim[2], dim[3]);
+		    //   System.out.println("3");
+		    if(dim[1]-dim[0] > 0 && dim[3]-dim[2] > 0){
+			System.out.println("4");
+			ReadImage curr = new ReadImage(arr);
+			symbols.add(curr);
+			System.out.println("hi");
+		    }
+		    c = dim[3];
+		}
 	    }
-	    c = dim[3];
 	}
     }
     public void makeImages(){
@@ -48,13 +57,13 @@ public class ReadBlock{
 	}
 	return sym;
     }
-    public int[] findDim(int cMin){
+    public int[] findDim(int cMin, int rMin){
 	int[] dim = new int[4];
 	boolean[][] oriImg = booleanImage.getData();
 	int c = cMin;
-	int rS = oriImg.length - 1;
+	int rS = rMin;
 	int rE = 0;
-	int cS = oriImg[0].length - 1;
+	int cS = cMin;
 	int cE = 0;
 	boolean b = false;;
 	while(c < oriImg[0].length && b){
@@ -62,17 +71,11 @@ public class ReadBlock{
 	    for(int r = 0; r < oriImg.length; r++){
 		if(oriImg[r][c]){
 		    b = true;
-		    if(c < cE){
+		    if(c > cE){
 			cE = c;
 		    }
-		    if(c > cS){
-			cS = c;
-		    }
-		    if(r < rE){
+		    if(r > rE){
 			rE = r;
-		    }
-		    if(r > rS){
-			rS = r;
 		    }
 		}
 	    }

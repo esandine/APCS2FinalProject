@@ -19,6 +19,7 @@ public class ReadImage{
 	image = new BufferedImage(width, height, 1);
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
+		pixelRGBValues[r][c] = new Pixel(0,r,c);
 		if(data[r][c]){
 		    pixelRGBValues[r][c].setColor(Color.black);
 		}
