@@ -105,11 +105,6 @@ public class booleanArray{
 	boolean[][]newData = new boolean[2*p.getRadiusInt()][2*p.getRadiusInt()];
 	double newCenterX = p.getRadiusInt()-.5;
 	double newCenterY = p.getRadiusInt()-.5;
-
-	System.out.println(centerX);
-	System.out.println(centerY);
-	System.out.println(newCenterX);
-	System.out.println(newCenterY);
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
 		if(data[r][c]){
@@ -237,6 +232,36 @@ public class booleanArray{
 	}
 	data = newData;
 
+    }
+    //To get the angle to rotate by, it assumes most capital letters are majority verticle lines
+
+    public double getRotAngle(){
+	double size = 0;
+	double total = 0;
+	for(int r = 1; r < data.length-1; r++){
+	    for(int c = 1; c < data[0].length-1; c++){
+		if(data[r+1][c]){
+		    size++;
+		}
+		if(data[r][c+1]){
+		    total+=Math.PI/2;
+		    size++;
+		}
+		if(data[r+1][c+1]){
+		    total+=Math.PI/4;
+		    size++;
+		}
+		if(data[r-1][c+1]){
+		    total-=Math.PI/4;
+		    size++;
+		}
+		if(data[r][c-1]){
+		    total-=Math.PI/2;
+		    size++;
+		}
+	    }
+	}
+	return total/size;
     }
     public static void main(String[]args){
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
