@@ -24,6 +24,12 @@ public class BlockReader{
 	    c = cE;
 	}
     }
+    public void makeImages(){
+	for(int i = 0; i < symbols.size(); i++){
+	    String s = "sym" + i + ".png";
+	    symbols.get(i).outPut(s);
+	}
+    }
     public boolean[][] removeSymbol(int cS, int cE){
 	int height = booleanArray.length;
 	int width = cE - cS + 1;
