@@ -19,9 +19,23 @@ public class BlockReader{
     public void removeSymbols(){
 	for(int c = 0; c < booleanArray.length; c++){
 	    int cE = readLine(c);
-	    boolean[][] arr = removeSymbol(c, cE);
-	    symbols.add(new ReadImage(arr));
+	    if(cE < booleanArray.length){
+		boolean[][] arr = removeSymbol(c, cE);
+		print(arr);
+		
+		ReadImage curr = new ReadImage(arr);
+		symbols.add(curr);
+	    }
 	    c = cE;
+	}
+    }
+    public void print(boolean[][] arr){
+	for(int r = 0; r < arr.length; r++){
+	    for(int c = 0; c < arr[0].length; c++){
+		System.out.print(arr[r][c] + " ");
+	    }
+
+	    System.out.println("");
 	}
     }
     public void makeImages(){
@@ -36,7 +50,7 @@ public class BlockReader{
 	boolean[][] sym = new boolean[height][width];
 	for(int r = 0; r < sym.length; r++){
 	    for(int c = 0; c < sym[0].length; c++){
-		sym[r][c] = booleanArray[r][c + cS]
+		sym[r][c] = booleanArray[r][c + cS];
 	    }
 	}
 	return sym;
@@ -45,7 +59,7 @@ public class BlockReader{
 	boolean first = false;
 	boolean triggered = false;
 	int c = cS;
-	int cE = 0;
+	int cE = cS;
 	int C = booleanArray[0].length;
 	while(c  < C){
 	    for(int r = 0; r < booleanArray.length; r++){
@@ -59,13 +73,19 @@ public class BlockReader{
 		cE = c;
 	    }
 	    triggered = false;
-	    c++;
+	    	    c++;
+	    if(c == C){
+		cE = c - 1;
+	    }
+
+
 	}
+	return cE;
     }
     public void setDef(){
-	booleanArray = new boolean[50][50];
-	for(int c = 0; c < 50; c++){
-	    for(int r = 0; r < 50; r++){
+	booleanArray = new boolean[30][30];
+	for(int c = 0; c < 30; c++){
+	    for(int r = 0; r < 30; r++){
 		if(c % 10 == 0){
 		    booleanArray[r][c] = false;
 		}

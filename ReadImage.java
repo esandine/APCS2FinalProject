@@ -17,14 +17,14 @@ public class ReadImage{
 	height = data.length;
 	width = data[0].length;
 	image = new BufferedImage(width, height, 1);
+	pixelRGBValues = new Pixel[height][width];
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
-		pixelRGBValues[r][c] = new Pixel(0,r,c);
 		if(data[r][c]){
-		    pixelRGBValues[r][c].setColor(Color.black);
+		    image.setRGB(c, height - r - 1, 0);
 		}
 		else{
-		    pixelRGBValues[r][c].setColor(Color.white);
+		    image.setRGB(c, height - r - 1, 255);
 		}
 	    }
 	}
