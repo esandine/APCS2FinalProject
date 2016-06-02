@@ -5,10 +5,13 @@ public class Pixel{
     private int xcor;
     private int ycor;
     //Constructors
-    public Pixel(int RGB,int x,int y){
-	color = new Color(RGB);
+    public Pixel(Color c,int x, int y){
+	color = c;
 	xcor = x;
 	ycor = y;
+    }
+    public Pixel(int RGB,int x,int y){
+	this(new Color(RGB),x,y);
     }
     //Mutators
     public void setColor(Color c){

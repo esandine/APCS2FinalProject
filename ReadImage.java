@@ -40,6 +40,7 @@ public class ReadImage{
     }
     //The reverse of loadRGBValues() primarily used for testing
     private void setRGBValues(){
+	image = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
 		image.setRGB(c, height - r -1, pixelRGBValues[r][c].getColor().getRGB());
@@ -197,6 +198,7 @@ public class ReadImage{
 	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
     }
+
     public void toBoolean(boolean[][] data){
 	setBlackAndWhite();
 	for(int r = 0; r < data.length; r++){
@@ -215,6 +217,24 @@ public class ReadImage{
 	dim[0] = pixelRGBValues.length;
 	dim[1] = pixelRGBValues[0].length;
 	return dim;
+
+    //converts a 2d array of booleans to an image
+    public void toImage(boolean[][]barry){
+	pixelRGBValues = new Pixel[barry.length][barry[0].length];
+	for(int i = 0; i<barry.length; i++){
+	    for(int ii = 0; ii<barry[0].length; ii++){
+		if(barry[i][ii]){
+		    pixelRGBValues[i][ii] = new Pixel(Color.BLACK,i,ii);
+		}else{
+		    pixelRGBValues[i][ii] = new Pixel(Color.WHITE,i,ii);
+		}
+	    }
+	}
+	height = pixelRGBValues.length;
+	width = pixelRGBValues[0].length;
+	setRGBValues();
+	
+
     }
     public void outPut(String s){
 	try{

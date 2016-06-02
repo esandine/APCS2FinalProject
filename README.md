@@ -10,6 +10,17 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+5/31/2016:
+-Ely Sandine
+-New Features:
+-rescale.java now trims image files
+-Bugs Added:
+-the ocr is more effective now, now recognizes the B
+-Bugs Fixed:
+-Minor indexoutofbounds fixed on getFirstCharacter
+-Goals
+-Figure how much to rotate an image by
+
 05/27/2016:
 -Ely Sandine
 -New Features:

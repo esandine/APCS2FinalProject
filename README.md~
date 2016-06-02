@@ -10,6 +10,17 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+05/27/2016:
+-Ely Sandine
+-New Features:
+-Trim function fixes the problem of Rotate making the images too big
+-Bugs Added:
+-loss of pixels when rotating
+-Bugs Fixed:
+-Rotate is fixed
+-Goals
+-Make Rotate better
+
 05/26/2016:
 -Ely Sandine
 -New Features:

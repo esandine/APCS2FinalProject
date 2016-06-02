@@ -1,3 +1,4 @@
+
 import java.io.File;
 public class Read{
     private static boolean debug = false;
@@ -22,6 +23,21 @@ public class Read{
 	for(int i = 0;i<charImages.length;i++){
 	    System.out.println(charImages[i]);
 	    rescale(dir+charImages[i]);
+	}
+    }
+    public static void trim(String image){
+	ReadImage img = new ReadImage(image);
+	booleanArray b1 = new booleanArray(img.toBoolean());
+	b1.trim();
+	img.toImage(b1.getData());
+	img.outPut(image);
+    }
+    public static void trimDir(String dir){
+        File in = new File(dir);
+        String[] charImages = in.list();
+	for(int i = 0;i<charImages.length;i++){
+	    System.out.println(charImages[i]);
+	    trim(dir+charImages[i]);
 	}
     }
     //Compares two images given the image names and the percent error needed
