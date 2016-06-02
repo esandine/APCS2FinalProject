@@ -56,6 +56,19 @@ public class BlockReader{
 	    c++;
 	}
     }
+    public void setDef(){
+	booleanArray = new boolean[50][50];
+	for(int c = 0; c < 50; c++){
+	    for(int r = 0; r < 50; r++){
+		if(c % 10 == 0){
+		    booleanArray[r][c] = false;
+		}
+		else{
+		    booleanArray[r][c] = true;
+		}
+	    }
+	}
+    }
     /*public int[] getEnds(int rS, int cS){
 	int[] endpoint = new int[2];
 	int rE = 0;
