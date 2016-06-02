@@ -20,9 +20,15 @@ public class ReadBlock{
 		if(oriImg[r][c] = true){
 		    int[] dim = findDim(c,r);
 		    //System.out.println("" + dim[0] + " " + dim[1] + " " + dim[2] + " " + dim[3]);
-		    boolean[][] arr = removeSymbol(dim[0], dim[1], dim[2], dim[3]);
+		    boolean[][] arr = new boolean[
+		    for(int i = 0; i < arr.length; i++){
+			for(int x = 0; x < arr[0].length; x++){
+			    System.out.print(arr[i][x] + " ");
+			}
+			System.out.println("");
+		    }
 		    //   System.out.println("3");
-		    if(dim[1]-dim[0] > 0 && dim[3]-dim[2] > 0){
+		    if(dim[1]-dim[0]+1 > 0 && dim[3]-dim[2]+1 > 0){
 			System.out.println("4");
 			ReadImage curr = new ReadImage(arr);
 			symbols.add(curr);

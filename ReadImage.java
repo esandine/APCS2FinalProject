@@ -191,10 +191,30 @@ public class ReadImage{
 		}else{
 		    retArray[r][c]=false;
 		}
+		//System.out.println("1");
 	    }
 	}
 	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
+    }
+    public void toBoolean(boolean[][] data){
+	setBlackAndWhite();
+	for(int r = 0; r < data.length; r++){
+	    for(int c = 0; c < data[0].length; c++){
+		if(pixelRGBValues[r][c].getColor().equals(Color.black)){
+		    data[r][c] = true;
+		}
+		else{
+		    data[r][c] = false;
+		}
+	    }
+	}
+    }
+    public int[] dims(){
+	int[] dim = new int[2];
+	dim[0] = pixelRGBValues.length;
+	dim[1] = pixelRGBValues[0].length;
+	return dim;
     }
     public void outPut(String s){
 	try{
