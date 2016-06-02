@@ -17,9 +17,24 @@ public class BlockReader{
 	
     }
     public void removeSymbols(){
-	
+	for(int c = 0; c < booleanArray.length; c++){
+	    int cE = readLine(c);
+	    boolean[][] arr = removeSymbol(c, cE);
+	    symbols.add(new ReadImage(arr));
+	    c = cE;
+	}
     }
-    
+    public boolean[][] removeSymbol(int cS, int cE){
+	int height = booleanArray.length;
+	int width = cE - cS + 1;
+	boolean[][] sym = new boolean[height][width];
+	for(int r = 0; r < sym.length; r++){
+	    for(int c = 0; c < sym[0].length; c++){
+		sym[r][c] = booleanArray[r][c + cS]
+	    }
+	}
+	return sym;
+    }
     public int readLine(int cS){
 	boolean first = false;
 	boolean triggered = false;
