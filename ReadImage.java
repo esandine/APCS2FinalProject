@@ -13,6 +13,22 @@ public class ReadImage{
     private Pixel bgC;
     private BufferedImage symbol;
     public static boolean debug = false;
+    public ReadImage(boolean[][] data){
+	height = data.length;
+	width = data[0].length;
+	image = new BufferedImage(width, height, 1);
+	pixelRGBValues = new Pixel[height][width];
+	for(int r = 0; r < height; r++){
+	    for(int c = 0; c < width; c++){
+		if(data[r][c]){
+		    image.setRGB(c, height - r - 1, 0);
+		}
+		else{
+		    image.setRGB(c, height - r - 1, 255);
+		}
+	    }
+	}
+    }
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
@@ -175,10 +191,30 @@ public class ReadImage{
 		}else{
 		    retArray[r][c]=false;
 		}
+		//System.out.println("1");
 	    }
 	}
 	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
+    }
+    public void toBoolean(boolean[][] data){
+	setBlackAndWhite();
+	for(int r = 0; r < data.length; r++){
+	    for(int c = 0; c < data[0].length; c++){
+		if(pixelRGBValues[r][c].getColor().equals(Color.black)){
+		    data[r][c] = true;
+		}
+		else{
+		    data[r][c] = false;
+		}
+	    }
+	}
+    }
+    public int[] dims(){
+	int[] dim = new int[2];
+	dim[0] = pixelRGBValues.length;
+	dim[1] = pixelRGBValues[0].length;
+	return dim;
     }
     public void outPut(String s){
 	try{

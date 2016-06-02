@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class BlockReader{
+    private ArrayList<ReadImage> symbols;
+    private ReadImage image;
+    private booleanArray booleanImage;
+    private boolean[][] booleanArray;
+    
+    public BlockReader(String img){
+	image = new ReadImage(img);
+	image.scaleImage();
+	booleanImage = new booleanArray(image.toBoolean());
+	symbols = new ArrayList<ReadImage>();
+	booleanArray = booleanImage.getData();
+    }
+    public int[] getEnds(int rS, int cS){
+	int[] endpoint = new int[2];
+	return endpoint;
+    }
+    public String toString(){
+	String s = "";
+	for(int r = 0; r < booleanArray.length; r++){
+	    for(int c = 0; c < booleanArray[0].length; c++){
+		s += booleanArray[r][c] + " ";
+	    }
+	    s += "\n";
+	}
+	return s;
+    }
+}
