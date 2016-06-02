@@ -217,7 +217,7 @@ public class ReadImage{
 	dim[0] = pixelRGBValues.length;
 	dim[1] = pixelRGBValues[0].length;
 	return dim;
-
+	}	
     //converts a 2d array of booleans to an image
     public void toImage(boolean[][]barry){
 	pixelRGBValues = new Pixel[barry.length][barry[0].length];
