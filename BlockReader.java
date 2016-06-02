@@ -4,15 +4,15 @@ public class BlockReader{
     private ArrayList<ReadImage> symbols;
     private ReadImage image;
     private booleanArray booleanImage;
-    private boolean[][] booleanArray;
+    private boolean[][] ori;
     
     public BlockReader(String img){
 	image = new ReadImage(img);
 	image.scaleImage();
 	int[] dims = image.dims();
 	System.out.println(dims[0] + " " + dims[1]);
-	booleanArray = new boolean[dims[0]][dims[1]];
-	image.toBoolean(booleanArray);
+	booleanImage = new booleanArray(image.toBoolean());
+	ori = booleanImage.getData();
 	symbols = new ArrayList<ReadImage>();
 	
     }
@@ -134,9 +134,9 @@ public class BlockReader{
 	}*/
     public String toString(){
 	String s = "";
-	for(int r = 0; r < booleanArray.length; r++){
-	    for(int c = 0; c < booleanArray[0].length; c++){
-		s += booleanArray[r][c] + " ";
+	for(int r = 0; r < ori.length; r++){
+	    for(int c = 0; c < ori[0].length; c++){
+		s += ori[r][c] + " ";
 	    }
 	    s += "\n";
 	}
