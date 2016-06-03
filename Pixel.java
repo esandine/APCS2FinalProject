@@ -9,13 +9,18 @@ public class Pixel{
 	color = c;
 	xcor = x;
 	ycor = y;
+	setOpaque();
     }
     public Pixel(int RGB,int x,int y){
 	this(new Color(RGB),x,y);
+	setOpaque();
     }
     //Mutators
-    public void setColor(Color c){
-	color = c;
+    public void setColor(int rgb){
+	color = new Color(rgb);
+    }
+    public void setOpaque(){
+	color = new Color(color.getRGB());
     }
     public void setXcor(int x){
 	xcor = x;

@@ -1,13 +1,17 @@
+import java.awt.Color;
 public class Pixel{
     //Instance Variables
     private Color color;
     private int xcor;
     private int ycor;
     //Constructors
-    public Pixel(int RGB,int x,int y){
-	color new Color(RGB);
+    public Pixel(Color c,int x, int y){
+	color = c;
 	xcor = x;
 	ycor = y;
+    }
+    public Pixel(int RGB,int x,int y){
+	this(new Color(RGB),x,y);
     }
     //Mutators
     public void setColor(Color c){
@@ -28,5 +32,13 @@ public class Pixel{
     }
     public int getYcor(){
 	return ycor;
+    }
+    //Sets the color ot black if it is black or white if it is any color that is not black
+    public void toBlackandWhite(){
+	if((color.getRed()<30)&&(color.getGreen()<30)&&(color.getBlue()<30)){
+	    setColor(Color.black);
+	}else{
+	    setColor(Color.white);
+	}
     }
 }
