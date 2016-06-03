@@ -141,6 +141,18 @@ public class ReadImage{
 	//	System.out.println(symbol.getHeight() + "," + symbol.getWidth());
 	return symbol;
     }
+    public void getColors(){
+	System.out.println(Color.black);
+	/*for(int r = 0; r < height; r++){
+	    for(int c = 0; c<width; c++){
+		if(!pixelRGBValues[r][c].getColor().equals(Color.white)){
+		    System.out.print(pixelRGBValues[r][c].getColor());
+		}else{
+		    System.out.print("yo");
+		}
+	    }
+	    }*/
+    }
     private void setBlack(){
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
@@ -238,9 +250,9 @@ public class ReadImage{
     }
     public void outPut(String s){
 	try{
-	    ImageIO.write(image,"png",new File(s));
+	    ImageIO.write(image,"JPG",new File(s));
 	}catch(IOException e){
-	    System.out.println("Writing error");
+	    System.out.println(e);
 	}
     }
     /*public void outputSymbol(String s){

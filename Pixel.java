@@ -17,10 +17,17 @@ public class Pixel{
     }
     //Mutators
     public void setColor(int rgb){
-	color = new Color(rgb);
+	setColor(new Color(rgb));
+    }
+    public void setColor(Color c){
+	color = c;
     }
     public void setOpaque(){
-	color = new Color(color.getRGB());
+	if(color.getAlpha()<.5){
+	    color = new Color(color.getRed(),color.getGreen(),color.getBlue());
+	}else{
+	    color = Color.white;
+	}
     }
     public void setXcor(int x){
 	xcor = x;
