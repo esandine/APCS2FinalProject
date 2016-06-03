@@ -105,11 +105,6 @@ public class booleanArray{
 	boolean[][]newData = new boolean[2*p.getRadiusInt()][2*p.getRadiusInt()];
 	double newCenterX = p.getRadiusInt()-.5;
 	double newCenterY = p.getRadiusInt()-.5;
-
-	System.out.println(centerX);
-	System.out.println(centerY);
-	System.out.println(newCenterX);
-	System.out.println(newCenterY);
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
 		if(data[r][c]){
@@ -254,6 +249,14 @@ public class booleanArray{
 		}
 		if(data[r+1][c+1]){
 		    total+=Math.PI/4;
+		    size++;
+		}
+		if(data[r-1][c+1]){
+		    total-=Math.PI/4;
+		    size++;
+		}
+		if(data[r][c-1]){
+		    total-=Math.PI/2;
 		    size++;
 		}
 	    }
