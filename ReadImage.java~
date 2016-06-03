@@ -69,7 +69,7 @@ public class ReadImage{
 	scaleImage(162,100);
     }
     //finds the background color
-    private void getBG(){
+    /*private void getBG(){
 	int black = 0;
 	int white = 0;
 	bgC = new Pixel(0,0,0);
@@ -95,7 +95,7 @@ public class ReadImage{
 	else{
 	    bgC.setColor(Color.white);
 	}
-    }
+	}*/
     private boolean isBlack(int r, int c){
 	if(pixelRGBValues[r][c].getColor().equals(Color.black)){
 	    return true;
@@ -110,7 +110,7 @@ public class ReadImage{
 	int startY = height - 1;
 	int endX = 0;
 	int endY = 0;
-	getBG();
+	//getBG();
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
 		if(!pixelRGBValues[r][c].getColor().equals(bgC.getColor())){
@@ -249,6 +249,7 @@ public class ReadImage{
 
     }
     public void outPut(String s){
+	setRGBValues();
 	try{
 	    ImageIO.write(image,"JPG",new File(s));
 	}catch(IOException e){
