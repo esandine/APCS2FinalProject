@@ -13,7 +13,7 @@ public class DemoDriver{
 		inputFile = "";
 	    }
 	}
-	booleanArray myImage = Read.loadBoolean(inputFile, true);
+	booleanArray myImage = Read.loadBoolean(inputFile);
 	myImage.loadCharacters();
 	System.out.println(myImage.closestMatch());
     }
