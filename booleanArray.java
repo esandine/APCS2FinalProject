@@ -57,8 +57,6 @@ public class booleanArray{
     }
     public double percentError(booleanArray other){
 	scaleToFit(other);
-	System.out.println(this);
-	System.out.println(other);
 	double retValue = 0;
 	for(int r = 0;r < data.length;r++){
 	    for(int c = 0; c < data[0].length;c++){
@@ -157,7 +155,6 @@ public class booleanArray{
     }
     public String toString(){
 	String retStr = "";
-	System.out.println(""+data.length+data[0].length);
 	for(int r = 0; r<data.length; r++){
 	    for(int c = 0; c<data[0].length;c++){
 		if(data[r][c]){
@@ -165,6 +162,7 @@ public class booleanArray{
 		}else{
 		    retStr+="_";
 		}
+		retStr+=" ";
 	    }
 	    retStr+="\n";
 	}
