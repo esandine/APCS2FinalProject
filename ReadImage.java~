@@ -142,16 +142,11 @@ public class ReadImage{
 	return symbol;
     }
     public void getColors(){
-	System.out.println(Color.black);
-	/*for(int r = 0; r < height; r++){
+	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
-		if(!pixelRGBValues[r][c].getColor().equals(Color.white)){
-		    System.out.print(pixelRGBValues[r][c].getColor());
-		}else{
-		    System.out.print("yo");
-		}
+		System.out.println(pixelRGBValues[r][c].getColor().getAlpha());
 	    }
-	    }*/
+	}
     }
     private void setBlack(){
 	for(int r = 0; r < height; r++){

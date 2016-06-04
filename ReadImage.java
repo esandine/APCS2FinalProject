@@ -29,6 +29,25 @@ public class ReadImage{
 	    }
 	}
     }
+    public ReadImage(String input){
+	try{
+	    image = ImageIO.read(new File(input));
+	    System.out.println(image.getType());
+	    height = image.getHeight();
+	    width = image.getWidth();
+	    setImageType();
+	    loadRGBValues();
+	}catch(IOException e){
+	    System.out.println("No file found");
+	    image = null;
+	}
+	//i1=ImageIO.read(new File(input));
+    }
+    private void setImageType(){
+	BufferedImage newImage = new BufferedImage(image.getWidth(),image.getHeight(),BufferedImage.TYPE_INT_RGB);
+	newImage.setData(image.getData());
+	image=newImage;
+    }
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
@@ -40,7 +59,6 @@ public class ReadImage{
     }
     //The reverse of loadRGBValues() primarily used for testing
     private void setRGBValues(){
-	image = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
 		image.setRGB(c, height - r -1, pixelRGBValues[r][c].getColor().getRGB());
@@ -144,7 +162,7 @@ public class ReadImage{
     public void getColors(){
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
-		System.out.println(pixelRGBValues[r][c].getColor().getAlpha());
+		System.out.println(pixelRGBValues[r][c].getColor());
 	    }
 	}
     }
@@ -154,18 +172,6 @@ public class ReadImage{
 		pixelRGBValues[r][c].setColor(Color.black);
 	    }
 	}
-    }
-    public ReadImage(String input){
-	try{
-	    image = ImageIO.read(new File(input));
-	    height = image.getHeight();
-	    width = image.getWidth();
-	    loadRGBValues();
-	}catch(IOException e){
-	    System.out.println("No file found");
-	    image = null;
-	}
-	//i1=ImageIO.read(new File(input));
     }
     public String toString(){
 	String ans = "";
