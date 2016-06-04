@@ -34,7 +34,7 @@ public class ReadImage{
 	    image = ImageIO.read(new File(input));
 	    height = image.getHeight();
 	    width = image.getWidth();
-	    setImageType();
+	    //setImageType();
 	    loadRGBValues();
 	}catch(IOException e){
 	    System.out.println("No file found");
