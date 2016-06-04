@@ -19,6 +19,9 @@ public class Polar{
     public double getRadius(){
 	return radius;
     }
+    public int getRadiusInt(){
+	return (int)getRadius();
+    }
     public int getXcor(){
 	return (int)(radius*Math.cos(angle));
     }
@@ -38,11 +41,11 @@ public class Polar{
 	    if(x>0&&y>=0){
 		setAngle(Math.atan(y/x));
 	    }else if(x>0&&y<0){
-		setAngle(Math.PI+Math.atan(y/x));
+		setAngle(2*Math.PI+Math.atan(y/x));
 	    }else if(x<0&&y<0){
 		setAngle(Math.atan(y/x)+Math.PI);
 	    }else{
-		setAngle(Math.PI*2+Math.atan(y/x));
+		setAngle(Math.PI+Math.atan(y/x));
 	    }
 	}
     }
