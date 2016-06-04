@@ -32,7 +32,6 @@ public class ReadImage{
     public ReadImage(String input){
 	try{
 	    image = ImageIO.read(new File(input));
-	    System.out.println(image.getType());
 	    height = image.getHeight();
 	    width = image.getWidth();
 	    setImageType();

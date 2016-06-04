@@ -17,8 +17,6 @@ public class Pixel{
     public Pixel(int RGB,int x,int y){
 	this(new Color(0),x,y);
 	setColor(convertPixel(RGB));
-	System.out.println(RGB);
-	System.out.println(this.toString());
     }
     //Mutators
     public int convertPixel(int RGB){
@@ -62,7 +60,7 @@ public class Pixel{
     }
     //Sets the color ot black if it is black or white if it is any color that is not black
     public void toBlackandWhite(){
-	if((color.getRed()<30)&&(color.getGreen()<30)&&(color.getBlue()<30)){
+	if((color.getRed()<128)&&(color.getGreen()<128)&&(color.getBlue()<128)){
 	    setColor(Color.black);
 	}else{
 	    setColor(Color.white);
