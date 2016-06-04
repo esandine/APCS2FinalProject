@@ -6,6 +6,7 @@ public class rescale{
 		Read.trimDir(args[0]);
 	    }else{
 		Read.rescale(args[0]);
+		Read.trim(args[0]);
 	    }
 	}
     }
