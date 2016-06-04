@@ -17,8 +17,6 @@ public class Pixel{
     public Pixel(int RGB,int x,int y){
 	this(new Color(0),x,y);
 	setColor(convertPixel(RGB));
-	System.out.println(RGB);
-	System.out.println(this.toString());
     }
     //Mutators
     public int convertPixel(int RGB){
