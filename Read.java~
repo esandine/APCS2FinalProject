@@ -1,4 +1,3 @@
-
 import java.io.File;
 public class Read{
     private static boolean debug = false;
