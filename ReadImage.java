@@ -50,6 +50,7 @@ public class ReadImage{
     }
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
+	System.out.println(image.getType());
 	pixelRGBValues = new Pixel[height][width];
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
@@ -250,7 +251,7 @@ public class ReadImage{
 
     }
     public void outPut(String s){
-	setRGBValues();
+	//setRGBValues();
 	try{
 	    ImageIO.write(image,"JPG",new File(s));
 	}catch(IOException e){
