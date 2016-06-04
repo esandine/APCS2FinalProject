@@ -50,23 +50,29 @@ public class ReadImage{
     }
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){
-	System.out.println(image.getType());
 	pixelRGBValues = new Pixel[height][width];
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
-		pixelRGBValues[r][c] = new Pixel(image.getRGB(c, height - r - 1),r,c);
+		pixelRGBValues[r][c] = new Pixel(image.getRGB(c,r),r,c);
 	    }
 	}
     }
     //The reverse of loadRGBValues() primarily used for testing
     private void setRGBValues(){
+	setImageType();
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
-		image.setRGB(c, height - r -1, pixelRGBValues[r][c].getColor().getRGB());
+		image.setRGB(c,r,pixelRGBValues[r][c].getColor().getRGB());
 	    }
 	}
     }
-
+    public void checkRGB(){
+	for(int r = 0; r < height; r++){
+	    for(int c = 0;c < width; c++){
+		System.out.println(image.getRGB(c,r));
+	    }
+	}
+    }
     //Scales image
     public void scaleImage(int h, int w){
 	height = h;
@@ -251,7 +257,7 @@ public class ReadImage{
 
     }
     public void outPut(String s){
-	//setRGBValues();
+	setRGBValues();
 	try{
 	    ImageIO.write(image,"JPG",new File(s));
 	}catch(IOException e){
