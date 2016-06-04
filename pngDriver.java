@@ -5,7 +5,7 @@ public class pngDriver{
 	//r.outPut("penguintry.jpg");
 	//r.getColors();
 	System.out.println("Start read");
-	booleanArray b1 = Read.loadBoolean("T.png");
+	booleanArray b1 = Read.loadBoolean("characters/ocrUpper/A.png");
 	System.out.println("Finish read");
 	System.out.println(b1);
     }
