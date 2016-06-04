@@ -155,7 +155,7 @@ public class booleanArray{
     }
     public void printChars(){
 	for(booleanArray b : characters.keySet()){
-	    System.out.println(characters.get(other));
+	    System.out.println(characters.get(b));
 	    System.out.println(b);
 	}
     }
