@@ -34,7 +34,7 @@ public class ReadImage{
 	    image = ImageIO.read(new File(input));
 	    height = image.getHeight();
 	    width = image.getWidth();
-	    //setImageType();
+	    setImageType();
 	    loadRGBValues();
 	}catch(IOException e){
 	    System.out.println("No file found");
@@ -43,13 +43,9 @@ public class ReadImage{
 	//i1=ImageIO.read(new File(input));
     }
     private void setImageType(){
-	try{
-	    BufferedImage newImage = new BufferedImage(image.getWidth(),image.getHeight(),BufferedImage.TYPE_INT_RGB);
-	    newImage.setData(image.getData());
-	    image=newImage;
-	}catch(ArrayIndexOutOfBoundsException e){
-	    System.out.println("Please try a different file");
-	}
+	BufferedImage newImage = new BufferedImage(image.getWidth(),image.getHeight(),BufferedImage.TYPE_INT_RGB);
+	newImage.setData(image.getData());
+	image=newImage;
     }
     //Converts the image to a 2D array of RGB values
     private void loadRGBValues(){

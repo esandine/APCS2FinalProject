@@ -153,6 +153,12 @@ public class booleanArray{
 	}
 	return retStr;
     }
+    public void printChars(){
+	for(booleanArray b : characters.keySet()){
+	    System.out.println(characters.get(b));
+	    System.out.println(b);
+	}
+    }
     public String toString(){
 	String retStr = "";
 	for(int r = 0; r<data.length; r++){
