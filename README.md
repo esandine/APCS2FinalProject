@@ -15,7 +15,7 @@ xx/xx/xxxx:
 06/04/2016:
 -Ely Sandine
 -New Features:
--none
+-Commented all the important classes
 -Bugs Added:
 -none
 -Bugs Fixed:

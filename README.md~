@@ -3,12 +3,48 @@
 -OCR
 Development Log:
 COPY/PASTE THIS EVERYNIGHT:
+
 xx/xx/xxxx:
 -<Name>
 -New Features:
 -Bugs Added:
 -Bugs Fixed:
 -Goals
+
+
+06/04/2016:
+-Ely Sandine
+-New Features:
+-none
+-Bugs Added:
+-none
+-Bugs Fixed:
+-Error with Readimage is fixed using colorspace and colormodel
+-Goals
+-add fonts / figure out how much to rotate and image
+
+
+06/03/2016:
+-Ely Sandine
+-New Features:
+-none
+-Bugs Added:
+-The bug with reading files is not in the booleanArray class
+-Bugs Fixed:
+-none
+-Goals
+
+06/02/2016:
+-Ely Sandine
+-New Features:
+-none
+-Bugs Added:
+-Discovered that all fiels were being read as all black
+-Bugs Fixed:
+-began researching how png pixels work
+-Goals
+-Fix the bug
+
 
 5/31/2016:
 -Ely Sandine
