@@ -13,7 +13,25 @@ public class ReadLines{
     }
     //finds end row of one section of the block given the row it starts at
     public int findBottomRow(int rS){
-	return 1;
+	boolean triggered = true;
+	boolean first = false;
+	int rE = img.getRows();
+	int r = rS;
+	while(triggered && r < rE){
+	    if(first){
+		triggered = false;
+	    }
+	    for(int c = 0; c < img.getCols(); c++){
+		if(img.getValue(r,c)){
+		    triggered = true;
+		    if(!first){
+			first = true;
+		    }
+		}
+	    }
+	    r++;
+	}
+	return r;
     }
     
 }
