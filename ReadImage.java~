@@ -215,9 +215,9 @@ public class ReadImage{
 	String ans = "";
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
-		ans += pixelRGBValues[r][c].getColor().getRGB() + " ";
+	       	ans += pixelRGBValues[r][c].getColor().getRGB() + " ";
 	    }
-	    ans += "\n";
+	     ans += "\n";
 	}
 	return ans;
     }
@@ -232,9 +232,9 @@ public class ReadImage{
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
 		pixelRGBValues[r][c].toBlackandWhite();
-		System.out.print(pixelRGBValues[r][c].getColor() +" ");
+		//System.out.print(pixelRGBValues[r][c].getColor() +" ");
 	    }
-	    System.out.println("");
+	    //System.out.println("");
 	}
     }
 
@@ -254,7 +254,7 @@ public class ReadImage{
 		//System.out.println("1");
 	    }
 	}
-	debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
+	//debug("toBoolean time: "+(System.currentTimeMillis()-t1)/1000);
 	return retArray;
     }
 
