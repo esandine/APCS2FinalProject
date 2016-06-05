@@ -22,14 +22,14 @@ public class booleanArray{
 	}
 	trim();
     }
-<<<<<<< HEAD
+
     public void setValue(int r, int c, boolean val){
 	data[r][c] = val;
     }
-=======
+
 
     //Accessors
->>>>>>> 387223d0ea4397b9094c89ed226964bfd410773f
+
     public boolean getValue(int r, int c){
 	return data[r][c];
     }

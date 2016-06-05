@@ -6,22 +6,26 @@ public class BlockReader{
     private booleanArray img;
     // private boolean[][] ori;
     
-    public BlockReader(String imgage){
+    public BlockReader(String image){
 	//image = new ReadImage(img);
 	//image.scaleImage();
 	//int[] dims = image.dims();
 	//System.out.println(dims[0] + " " + dims[1]);
-	img = Read.loadBoolean(imgage);
+	img = Read.loadBoolean(image);
+	img.trim();
 	//ori = booleanImage.getData();
 	symbols = new ArrayList<booleanArray>();
 	
     }
     public void removeSymbols(){
+	System.out.println(img.getCols());
 	for(int c = 0; c < img.getCols(); c++){
 	    int cE = readLine(c);
-	    if(cE < img.getRows()){
+	    System.out.println(c + " " + cE);
+	    
+	    if(cE < img.getCols()){
 		boolean[][] arr = removeSymbol(c, cE);
-		print(arr);
+		//print(arr);
 		
 		booleanArray curr = new booleanArray(arr);
 		symbols.add(curr);
@@ -46,7 +50,9 @@ public class BlockReader{
 	}*/
     public String stringImg(){
 	String text = "";
+	System.out.println(symbols.size());
 	for(int i = 0; i < symbols.size(); i++){
+	    symbols.get(i).trim();
 	    symbols.get(i).loadCharacters();
 	    text+= symbols.get(i).closestMatch();
 	}

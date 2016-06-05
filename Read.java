@@ -9,8 +9,8 @@ public class Read{
 	ReadImage input = new ReadImage(image);
 	double t2 = System.currentTimeMillis();
 	double t3 = System.currentTimeMillis();
-	debug("ReadImage time: "+(t2-t1)/1000);
-	debug("Scale Image time: "+(t3-t2)/1000);
+	//debug("ReadImage time: "+(t2-t1)/1000);
+	//debug("Scale Image time: "+(t3-t2)/1000);
 	return new booleanArray(input.toBoolean());
     }
 
