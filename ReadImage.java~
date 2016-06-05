@@ -144,6 +144,88 @@ public class ReadImage{
 	}
 	}*/
 
+    //MaxNode is used to find the two most common colors
+    private class MaxNode{
+	private int color;
+	private int frequency;
+	public MaxNode(int i){
+	    this(i,0);
+	}
+	public MaxNode(int i, int f){
+	    color = i;
+	    frequency = f;
+	}
+	public void add(){
+	    frequency++;
+	}
+	public int getColor(){
+	    return color;
+	}
+	public int getFrequency(){
+	    return frequency;
+	}
+	public String toString(){
+	    return "Color: "+getColor()+" Frequency: "+getFrequency();
+	}
+    }
+
+    //Finds the two most common colors in the image
+    public int[] twoColors(){
+	//Creates array of colors to check if color already exists
+	ArrayList<Integer> colors = new ArrayList<Integer>();
+	//Creates array of nodes to keep trakc of frequency of the colors
+	ArrayList<MaxNode> nodes = new ArrayList<MaxNode>();
+	for(int r = 0; r < pixelRGBValues.length; r++){
+	    for(int c = 0; c < pixelRGBValues[0].length; c++){
+		Integer co = pixelRGBValues[r][c].getColor().getRGB();
+		if(colors.contains(co)){
+		    //If the color is added you increase frequency by one
+		    nodes.get(colors.indexOf(co)).add();
+		}else{
+		    //If not make a new node with the color
+		    colors.add(co);
+		    nodes.add(new MaxNode(co));
+		}
+	    }
+	}
+	int[] retValues = new int[2];
+	if(nodes.size()==0){
+	    //This means no colors which is suspicious
+	    throw new IllegalArgumentException();
+	}else if(nodes.size()==1){
+	    //If image is one color return it twice
+	    retValues[0]=nodes.get(0).getColor();
+	    retValues[1]=nodes.get(0).getColor();
+	}else{
+	    //If not find the two nodes with biggest frequencies
+	    MaxNode mostCommon;
+	    MaxNode secondCommon;
+	    if(nodes.get(0).getFrequency()>nodes.get(1).getFrequency()){
+		mostCommon = nodes.get(0);
+		secondCommon = nodes.get(1);
+	    }else{
+		mostCommon = nodes.get(1);
+		secondCommon = nodes.get(0);
+	    }
+	    for(int i = 2; i<nodes.size(); i++){
+		MaxNode n = nodes.get(i);
+		if(n.getFrequency()>mostCommon.getFrequency()){
+		    //If this is the biggest frequency
+		    if(mostCommon.getFrequency()>secondCommon.getFrequency()){
+			secondCommon = new MaxNode(mostCommon.getColor(),mostCommon.getFrequency());
+			System.out.println("Triggered");
+		    }
+		    mostCommon = n;
+		}else if(n.getFrequency()>secondCommon.getFrequency()){
+		    //If second biggest frequency
+		    secondCommon = n;
+		}
+	    }
+	    retValues[0]=mostCommon.getColor();
+	    retValues[1]=secondCommon.getColor();
+	}
+	return retValues;
+    }
     //Sets image to all black, used for testing
     private boolean isBlack(int r, int c){
 	if(pixelRGBValues[r][c].getColor().equals(Color.black)){
@@ -229,10 +311,31 @@ public class ReadImage{
 
     //Makes all the pixels either white or black
     public void setBlackAndWhite(){
+	//Gets the two most common colors
+	int[] twoc= twoColors();
+	//Splits the most common color into rgb components
+	Color most = new Color(twoc[0]);
+	float[] mostComponents = most.getRGBComponents();
+	//Splits the second most common color into rgb componets
+	Color second = new Color(twoc[1]);
+	float[] secondComponents = second.getRGBComponents();
+	//Variables for the current rgb values
+	float[] currentComponents = new float[3];
+	//Variables for the error between most and second most common colors
+	int mostError;
+	int secondError;
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
-		pixelRGBValues[r][c].toBlackandWhite();
-		//System.out.print(pixelRGBValues[r][c].getColor() +" ");
+		currentComponents = pixelRGBValues[r][c].getColor().getRGBComponents();
+		for(int i = 0; i< 3; i++){
+		    mostError+=Math.abs(Math.abs(mostComponents[i])-Math.abs(currentComponents[i]));
+		    secondError+=Math.abs(Math.abs(mostComponents[i])-Math.abs(currentComponents[i]));
+		}
+		if(mostError>secondError){
+		    pixelRGBValues[r][r].setColor(Color.black);
+		}else{
+		    pixelRGBValues[r][r].setColor(Color.white);
+		}
 	    }
 	    //System.out.println("");
 	}

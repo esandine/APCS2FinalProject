@@ -1,6 +1,6 @@
 public class pngDriver{
     public static void main(String[]args){
-	ReadImage r = new ReadImage("test2.jpeg");
+	ReadImage r = new ReadImage("text2.JPEG");
 	r.twoColors();
     }
 }

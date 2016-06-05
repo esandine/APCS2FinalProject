@@ -311,10 +311,36 @@ public class ReadImage{
 
     //Makes all the pixels either white or black
     public void setBlackAndWhite(){
+	//Gets the two most common colors
+	int[] twoc= twoColors();
+	//Splits the most common color into rgb components
+	Color most = new Color(twoc[0]);
+	float[] mostComponents = most.getRGBComponents(null);
+	System.out.println(Arrays.toString(mostComponents));
+	//Splits the second most common color into rgb componets
+	Color second = new Color(twoc[1]);
+	float[] secondComponents = second.getRGBComponents(null);
+	System.out.println(Arrays.toString(secondComponents));
+
+	//Variables for the current rgb values
+	float[] currentComponents = new float[3];
+	//Variables for the error between most and second most common colors
+	float mostError;
+	float secondError;
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
-		pixelRGBValues[r][c].toBlackandWhite();
-		//System.out.print(pixelRGBValues[r][c].getColor() +" ");
+		mostError = 0;
+		secondError = 0;
+		currentComponents = pixelRGBValues[r][c].getColor().getRGBComponents(null);
+		for(int i = 0; i< 3; i++){
+		    mostError+=Math.abs(Math.abs(mostComponents[i])-Math.abs(currentComponents[i]));
+		    secondError+=Math.abs(Math.abs(secondComponents[i])-Math.abs(currentComponents[i]));
+		}
+		if(mostError>secondError){
+		    pixelRGBValues[r][c].setColor(Color.black);
+		}else{
+		    pixelRGBValues[r][c].setColor(Color.white);
+		}
 	    }
 	    //System.out.println("");
 	}

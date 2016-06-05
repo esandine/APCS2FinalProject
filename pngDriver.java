@@ -1,6 +1,7 @@
 public class pngDriver{
     public static void main(String[]args){
-	ReadImage r = new ReadImage("text2.JPEG");
-	r.twoColors();
+	booleanArray b = Read.loadBoolean("redA.jpeg");
+	b.scale(50,50);
+	System.out.println(b);
     }
 }
