@@ -1,29 +1,33 @@
 import java.util.*;
 
 public class BlockReader{
-    private ArrayList<ReadImage> symbols;
-    private ReadImage image;
-    private booleanArray booleanImage;
-    //private boolean[][] ori;
+    private ArrayList<booleanArray> symbols;
+    //private ReadImage image;
+    private booleanArray img;
+    // private boolean[][] ori;
     
-    public BlockReader(String img){
-	image = new ReadImage(img);
+    public BlockReader(String image){
+	//image = new ReadImage(img);
 	//image.scaleImage();
-	int[] dims = image.dims();
-	System.out.println(dims[0] + " " + dims[1]);
-	booleanImage = new booleanArray(image.toBoolean());
+	//int[] dims = image.dims();
+	//System.out.println(dims[0] + " " + dims[1]);
+	img = Read.loadBoolean(image);
+	img.trim();
 	//ori = booleanImage.getData();
-	symbols = new ArrayList<ReadImage>();
+	symbols = new ArrayList<booleanArray>();
 	
     }
-    /* public void removeSymbols(){
-	for(int c = 0; c < ori[0].length; c++){
+    public void removeSymbols(){
+	System.out.println(img.getCols());
+	for(int c = 0; c < img.getCols(); c++){
 	    int cE = readLine(c);
-	    if(cE < ori[0].length){
+	    System.out.println(c + " " + cE);
+	    
+	    if(cE < img.getCols()){
 		boolean[][] arr = removeSymbol(c, cE);
-		print(arr);
+		//print(arr);
 		
-		ReadImage curr = new ReadImage(arr);
+		booleanArray curr = new booleanArray(arr);
 		symbols.add(curr);
 	    }
 	    c = cE;
@@ -38,19 +42,34 @@ public class BlockReader{
 	    System.out.println("");
 	}
     }
-    public void makeImages(){
+    /*public void makeImages(){
 	for(int i = 0; i < symbols.size(); i++){
 	    String s = "sym" + i + ".png";
 	    symbols.get(i).outPut(s);
 	}
+	}*/
+    public String stringImg(){
+	String text = "";
+	System.out.println(symbols.size());
+	for(int i = 0; i < symbols.size(); i++){
+	    boolean space = symbols.get(i).trim();
+	    symbols.get(i).loadCharacters();
+	    if(space){
+		text+= "\t" + symbols.get(i).closestMatch();
+	    }
+	    else{
+		text+= symbols.get(i).closestMatch();
+	    }
+	}   
+	return text;
     }
     public boolean[][] removeSymbol(int cS, int cE){
-	int height = ori.length;
+	int height = img.getRows();
 	int width = cE - cS + 1;
 	boolean[][] sym = new boolean[height][width];
 	for(int r = 0; r < sym.length; r++){
 	    for(int c = 0; c < sym[0].length; c++){
-		sym[r][c] = ori[r][c + cS];
+		sym[r][c] = img.getValue(r,c + cS);
 	    }
 	}
 	return sym;
@@ -60,10 +79,10 @@ public class BlockReader{
 	boolean triggered = false;
 	int c = cS;
 	int cE = cS;
-	int C = ori[0].length;
+	int C = img.getCols();
 	while(c  < C){
-	    for(int r = 0; r < ori.length; r++){
-		if(ori[r][c]){
+	    for(int r = 0; r < img.getRows(); r++){
+		if(img.getValue(r,c)){
 		    triggered = true;
 		    first = true;
 		}
@@ -82,7 +101,7 @@ public class BlockReader{
 	}
 	return cE;
     }
-    public void setDef(){
+    /*public void setDef(){
 	ori = new boolean[30][30];
 	for(int c = 0; c < 30; c++){
 	    for(int r = 0; r < 30; r++){
@@ -94,7 +113,7 @@ public class BlockReader{
 		}
 	    }
 	}
-    }
+	}*/
     /*public int[] getEnds(int rS, int cS){
 	int[] endpoint = new int[2];
 	int rE = 0;
@@ -132,7 +151,7 @@ public class BlockReader{
 	}
 	return endpoint;
 	}*/
-    public String toString(){
+    /* public String toString(){
 	return booleanImage.toString();
-    }
+	}*/
 }

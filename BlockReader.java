@@ -17,6 +17,7 @@ public class BlockReader{
 	symbols = new ArrayList<booleanArray>();
 	
     }
+    //loops through one line of text, does not handle multiple lines. Makes each char found its own booleanArray in symbols ArrayList
     public void removeSymbols(){
 	System.out.println(img.getCols());
 	for(int c = 0; c < img.getCols(); c++){
@@ -33,6 +34,7 @@ public class BlockReader{
 	    c = cE;
 	}
     }
+    //used for debugging
     public void print(boolean[][] arr){
 	for(int r = 0; r < arr.length; r++){
 	    for(int c = 0; c < arr[0].length; c++){
@@ -42,12 +44,15 @@ public class BlockReader{
 	    System.out.println("");
 	}
     }
+    
     /*public void makeImages(){
 	for(int i = 0; i < symbols.size(); i++){
 	    String s = "sym" + i + ".png";
 	    symbols.get(i).outPut(s);
 	}
 	}*/
+
+    //Returns the string that is found in the image
     public String stringImg(){
 	String text = "";
 	System.out.println(symbols.size());
@@ -63,6 +68,7 @@ public class BlockReader{
 	}   
 	return text;
     }
+    //given the starting column and end column, makes an 2d array of booleans that will be used to instantiate each booleanArray in symbols
     public boolean[][] removeSymbol(int cS, int cE){
 	int height = img.getRows();
 	int width = cE - cS + 1;
@@ -74,6 +80,7 @@ public class BlockReader{
 	}
 	return sym;
     }
+    //Used to find the end column of an image given its starting col, basically finding its width. Does not actually read the whole line, not best name
     public int readLine(int cS){
 	boolean first = false;
 	boolean triggered = false;
@@ -101,6 +108,7 @@ public class BlockReader{
 	}
 	return cE;
     }
+    //used for testing
     /*public void setDef(){
 	ori = new boolean[30][30];
 	for(int c = 0; c < 30; c++){
@@ -113,45 +121,5 @@ public class BlockReader{
 		}
 	    }
 	}
-	}*/
-    /*public int[] getEnds(int rS, int cS){
-	int[] endpoint = new int[2];
-	int rE = 0;
-	int cE = 0;
-	boolean first = false;
-	boolean triggered = true;
-	int R = booleanArray.length;
-	int C = booleanArray[0].length;
-	int r = 0;
-	while(r < R){
-	    int c = 0;
-	    while(c < C){
-		boolean continue = true;
-		if(booleanArray[r][c]){
-		    if(r > rE){
-			rE = r;
-		    }
-		    if(c > cE){
-			cE = c;
-		    }
-		}
-		if(triggered && !booleanArray[r][c]){
-		    
-		}
-		c++;
-	    }
-	    if(!triggered){
-		C = 0;
-		R = 0;
-	    }
-	    if(first){
-		triggered = false;
-	    }
-	    r++;
-	}
-	return endpoint;
-	}*/
-    /* public String toString(){
-	return booleanImage.toString();
 	}*/
 }
