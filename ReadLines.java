@@ -33,5 +33,17 @@ public class ReadLines{
 	}
 	return r;
     }
+    //return boolean[][] using dimension given
+    public boolean[][] removeLine(itn rS, int rE){
+	int height = rE - rS + 1;
+	int width = img.getCols();
+	boolean[][] arr = new boolean[height][width];
+	for(int r = 0; r < height; r++){
+	    for(int c = 0; c < width; c++){
+		arr[r][c] = img.getValue(r + rS, c);
+	    }
+	}
+	return arr;
+    }
     
 }
