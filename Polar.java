@@ -33,7 +33,7 @@ public class Polar{
     }
     //Constructors
     public Polar(double x, double y){
-	if(x==0){
+	if(x==0){//To make sure no dividing by 0
 	    setRadius(y);
 	    setAngle(Math.PI/2);
 	}else{

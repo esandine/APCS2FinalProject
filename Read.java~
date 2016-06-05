@@ -26,7 +26,7 @@ public class Read{
     }
     public static void trim(String image){
 	ReadImage img = new ReadImage(image);
-	booleanArray b1 = new booleanArray(img.toBooleanArray());
+	booleanArray b1 = new booleanArray(img.toBoolean());
 	b1.trim();
 	img.toImage(b1.getData());
 	img.outPut(image);

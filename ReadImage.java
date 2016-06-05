@@ -5,14 +5,20 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.util.*;
 import java.awt.Graphics2D;
+//This class is responsible for reading images and converting them to array of pixels
 public class ReadImage{
-    private BufferedImage image;
-    private Pixel[][] pixelRGBValues;
-    private int height;
-    private int width;
-    private Pixel bgC;
-    private BufferedImage symbol;
-    public static boolean debug = false;
+    //Instance variables
+    private BufferedImage image;//The image file that is read
+    private Pixel[][] pixelRGBValues;//The array of pixels
+    private int height;//The height of image
+    private int width;//The width of image
+    private Pixel bgC;//The background color (Currently not in use)
+    private BufferedImage symbol;//For chopping files (Currently not in use)
+    public static boolean debug = false;//For debugging
+
+    //Constructors:
+
+    //This creates an Image from an array of booleans, it is used for testing purposes
     public ReadImage(boolean[][] data){
 	height = data.length;
 	width = data[0].length;
@@ -29,26 +35,65 @@ public class ReadImage{
 	    }
 	}
     }
-    //Converts the image to a 2D array of RGB values
+
+    //The main constructor, reads an iamge and fills the instance variables accordingly
+    public ReadImage(String input){
+	try{
+	    image = ImageIO.read(new File(input));
+	    height = image.getHeight();
+	    width = image.getWidth();
+	    //setImageType();
+	    loadRGBValues();
+	}catch(IOException e){
+	    System.out.println("No file found");
+	    image = null;
+	}
+	//i1=ImageIO.read(new File(input));
+    }
+
+    //Methods
+
+    //setImageType rewrites the bufferedimage to make sure it is in the right color format
+    private void setImageType(){
+	try{
+	    BufferedImage newImage = new BufferedImage(image.getWidth(),image.getHeight(),BufferedImage.TYPE_INT_RGB);
+	    newImage.setData(image.getData());
+	    image=newImage;
+	}catch(ArrayIndexOutOfBoundsException e){
+	    System.out.println("Please try a different file");
+	}
+    }
+
+    //Converts the image to a 2D array of pixels
     private void loadRGBValues(){
 	pixelRGBValues = new Pixel[height][width];
 	for(int r = 0; r < height; r++){ 
 	    for(int c = 0; c < width; c++){
-		pixelRGBValues[r][c] = new Pixel(image.getRGB(c, height - r - 1),r,c);
-	    }
-	}
-    }
-    //The reverse of loadRGBValues() primarily used for testing
-    private void setRGBValues(){
-	image = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
-	for(int r = 0; r < height; r++){ 
-	    for(int c = 0; c < width; c++){
-		image.setRGB(c, height - r -1, pixelRGBValues[r][c].getColor().getRGB());
+		pixelRGBValues[r][c] = new Pixel(image.getRGB(c,r),r,c);
 	    }
 	}
     }
 
-    //Scales image
+    //The reverse of loadRGBValues() primarily used for testing
+    private void setRGBValues(){
+	setImageType();
+	for(int r = 0; r < height; r++){ 
+	    for(int c = 0; c < width; c++){
+		image.setRGB(c,r,pixelRGBValues[r][c].getColor().getRGB());
+	    }
+	}
+    }
+
+    //Prints out all the pixel values, used for testing
+    public void checkRGB(){
+	for(int r = 0; r < height; r++){
+	    for(int c = 0;c < width; c++){
+		System.out.println(image.getRGB(c,r));
+	    }
+	}
+    }
+
+    //Scales images. Used in resizing all the images in the font directories
     public void scaleImage(int h, int w){
 	height = h;
 	width = w;
@@ -64,12 +109,14 @@ public class ReadImage{
 
 	loadRGBValues();
     }
-    //Scales to golden ratio
+
+    //Scales to golden ratio, currently not used anymore
     public void scaleImage(){
 	scaleImage(162,100);
     }
+
     //finds the background color
-    private void getBG(){
+    /*private void getBG(){
 	int black = 0;
 	int white = 0;
 	bgC = new Pixel(0,0,0);
@@ -95,7 +142,9 @@ public class ReadImage{
 	else{
 	    bgC.setColor(Color.white);
 	}
-    }
+	}*/
+
+    //Sets image to all black, used for testing
     private boolean isBlack(int r, int c){
 	if(pixelRGBValues[r][c].getColor().equals(Color.black)){
 	    return true;
@@ -104,13 +153,14 @@ public class ReadImage{
 	    return false;
 	}
     }
-    //remove symbols from picture
+
+    //remove symbols from picture not in use I think
     private BufferedImage removeSymbol(){
 	int startX = width - 1;
 	int startY = height - 1;
 	int endX = 0;
 	int endY = 0;
-	getBG();
+	//getBG();
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
 		if(!pixelRGBValues[r][c].getColor().equals(bgC.getColor())){
@@ -141,6 +191,17 @@ public class ReadImage{
 	//	System.out.println(symbol.getHeight() + "," + symbol.getWidth());
 	return symbol;
     }
+
+    //Prints out all the colors of the pixels in pixelRGBValues
+    public void getColors(){
+	for(int r = 0; r < height; r++){
+	    for(int c = 0; c<width; c++){
+		System.out.println(pixelRGBValues[r][c].getColor());
+	    }
+	}
+    }
+
+    //Sets all the pixels to black, used for testing
     private void setBlack(){
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
@@ -148,18 +209,8 @@ public class ReadImage{
 	    }
 	}
     }
-    public ReadImage(String input){
-	try{
-	    image = ImageIO.read(new File(input));
-	    height = image.getHeight();
-	    width = image.getWidth();
-	    loadRGBValues();
-	}catch(IOException e){
-	    System.out.println("No file found");
-	    image = null;
-	}
-	//i1=ImageIO.read(new File(input));
-    }
+
+    //Used for debugging purposes
     public String toString(){
 	String ans = "";
 	for(int r = 0; r < height; r++){
@@ -170,9 +221,12 @@ public class ReadImage{
 	}
 	return ans;
     }
+
+    //Returns the dimensions
     public String getDimension(){
 	return "h: " + height + ", w: " + width;
     }
+
     //Makes all the pixels either white or black
     public void setBlackAndWhite(){
 	for(int r = 0; r < height; r++){
@@ -183,6 +237,9 @@ public class ReadImage{
 	    System.out.println("");
 	}
     }
+
+    //Function that converts the array of pixels into an array of booleans
+    //True=black, False = anything else
     public boolean[][]toBoolean(){
 	double t1 = System.currentTimeMillis();
 	setBlackAndWhite();
@@ -201,6 +258,7 @@ public class ReadImage{
 	return retArray;
     }
 
+    //Converts the pixels to black and white, primarily used for testing/debugging
     public void toBoolean(boolean[][] data){
 	setBlackAndWhite();
 	for(int r = 0; r < data.length; r++){
@@ -214,12 +272,15 @@ public class ReadImage{
 	    }
 	}
     }
+
+    //dims returns the dimensions of the array
     public int[] dims(){
 	int[] dim = new int[2];
 	dim[0] = pixelRGBValues.length;
 	dim[1] = pixelRGBValues[0].length;
 	return dim;
-	}	
+    }	
+
     //converts a 2d array of booleans to an image
     public void toImage(boolean[][]barry){
 	pixelRGBValues = new Pixel[barry.length][barry[0].length];
@@ -235,14 +296,15 @@ public class ReadImage{
 	height = pixelRGBValues.length;
 	width = pixelRGBValues[0].length;
 	setRGBValues();
-	
-
     }
+
+    //Primarily used for testing and resizing fonts, it writes the image on a new file
     public void outPut(String s){
+	setRGBValues();
 	try{
-	    ImageIO.write(image,"png",new File(s));
+	    ImageIO.write(image,"JPG",new File(s));
 	}catch(IOException e){
-	    System.out.println("Writing error");
+	    System.out.println(e);
 	}
     }
     /*public void outputSymbol(String s){
@@ -254,24 +316,8 @@ public class ReadImage{
 	}
 
 	}*/
-    //Creates a booleanArray class to be compared
-    
-    public static void main(String[]args){
-	if(args.length>1){
-	    ReadImage r1 = new ReadImage(args[0]);
-	    r1.scaleImage();
-	    r1.outPut(args[1]);
-	}
-	else if(args.length>0){
-	    ReadImage r1 = new ReadImage(args[0]);
-	    long time = System.currentTimeMillis();
-	    r1.image=r1.removeSymbol();
-	    for(int i = 0; i< 1000000;i++){
-		r1.image.getScaledInstance(1618,1000,Image.SCALE_FAST);
-	    }
-	    System.out.println("Fast"+(System.currentTimeMillis()-time));
-	}
-    }
+
+    //Used for debugging
     public static void debug(Object o){
 	if(debug){
 	    System.out.println(o);

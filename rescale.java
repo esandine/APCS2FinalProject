@@ -1,3 +1,4 @@
+//For easily rescaling directories
 public class rescale{
     public static void main(String[] args){
 	if(args.length>0){

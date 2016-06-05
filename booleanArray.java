@@ -1,11 +1,19 @@
 import java.util.Hashtable;
 import java.io.File;
+//booleanArray is essentially a super 2D array of booleans. It is used for all comparisons within the program
 public class booleanArray{
-    private boolean[][]data;
-    private Hashtable<booleanArray,String> characters;
+    //Instance Variables
+    private boolean[][]data;//The boolean array
+    private Hashtable<booleanArray,String> characters;//The other characters to compare to
+
+    //Constructors
+
+    //Standard Constructor
     public booleanArray(boolean[][]data){
 	setData(data);
     }
+
+    //Default constructor
     public booleanArray(){
 	data=new boolean[1618][1000];
 	characters = new Hashtable<booleanArray,String>();
@@ -14,9 +22,14 @@ public class booleanArray{
 	}
 	trim();
     }
+<<<<<<< HEAD
     public void setValue(int r, int c, boolean val){
 	data[r][c] = val;
     }
+=======
+
+    //Accessors
+>>>>>>> 387223d0ea4397b9094c89ed226964bfd410773f
     public boolean getValue(int r, int c){
 	return data[r][c];
     }
@@ -29,10 +42,13 @@ public class booleanArray{
     public boolean[][] getData(){
 	return data;
     }
+    //Mutators
     public void setData(boolean[][]data){
 	this.data=data;
 	characters = new Hashtable<booleanArray,String>();
     }
+
+    //It loads the hashtable by reading all the directories in the characters directory
     public void loadCharacters(){
 	File in = new File("characters/");
 	String[] fonts = in.list();
@@ -40,6 +56,7 @@ public class booleanArray{
 	    loadDirectory("characters/"+fonts[i]+"/");
 	}
     }
+    //Fills the hashtable with all the images within the directory as keys and all the names of the files as the values
     public void loadDirectory(String dir){
 	booleanCharacters b = new booleanCharacters(dir);
 	Hashtable<booleanArray,String> h = b.toHashtable(dir.substring(11));
@@ -47,6 +64,8 @@ public class booleanArray{
 	    characters.put(a,h.get(a));
 	}
     }
+
+    //Compares to see if it and another booleanArray are within a certain percentage not used
     public boolean compareTo(booleanArray other, double percent){
 	double failuresLeft = percent * 161.8;
 	for(int r = 0;r < data.length;r++){
@@ -58,6 +77,8 @@ public class booleanArray{
 	}
 	return failuresLeft>=0;
     }
+
+    //The main comparison function, it finds the percent error between another booleanArray and itself
     public double percentError(booleanArray other){
 	scaleToFit(other);
 	double retValue = 0;
@@ -70,7 +91,8 @@ public class booleanArray{
 	}
 	return 100*retValue/(getRows()*getCols());
     }
-    //Scales rows
+
+    //Scales rows to a specific horizonatal value
     public boolean scaleRows(int newH){
 	boolean[][]newData = new boolean[newH][data[0].length];
 	double scaleFactor = (newH+0.0)/data.length;
@@ -83,7 +105,7 @@ public class booleanArray{
 	return true;
     }
 
-    //Scales cols
+    //Scales cols to a specific vertical value
     public boolean scaleCols(int newH){
 	boolean[][]newData = new boolean[data.length][newH];
 	double scaleFactor = (newH+0.0)/data[0].length;
@@ -95,24 +117,24 @@ public class booleanArray{
 	data=newData;
 	return true;
     }
+
+    //Scales rows and columns
     public void scale(int r, int c){
 	scaleRows(r);
 	scaleCols(c);
     }
-    //Rotates the boolean Array
+
+    //Rotates the boolean Array by converting the coordinates to polars, rotating and converting back to xy coordinates. Then it trims the sides to shrink the image
     public void rotate(double rad){
 	double centerX = data.length/2.0;
 	double centerY = data[0].length/2.0;
 	Polar p = new Polar(centerX,centerY);
 	p.rotate(rad);
+	//Makes sure the new array is big enough
 	boolean[][]newData = new boolean[2*p.getRadiusInt()][2*p.getRadiusInt()];
 	double newCenterX = p.getRadiusInt()-.5;
 	double newCenterY = p.getRadiusInt()-.5;
-
-	System.out.println(centerX);
-	System.out.println(centerY);
-	System.out.println(newCenterX);
-	System.out.println(newCenterY);
+	//Rotates all coordinates
 	for(int r = 0; r< data.length; r++){
 	    for(int c = 0; c< data[0].length; c++){
 		if(data[r][c]){
@@ -140,15 +162,19 @@ public class booleanArray{
 	    }
 	}
 	data=newData;
+	//Gets rid of the whitespace
 	trim();
     }
-    //Makes two boolean arrays the same size
+
+    //Makes two boolean arrays the same size for comparison
     public void scaleToFit(booleanArray other){
 	int rows = Math.min(other.getRows(),getRows());
 	int cols = Math.min(other.getCols(),getCols());
 	scale(rows,cols);
 	other.scale(rows,cols);
     }
+
+    //Goes through the hashtable and find the booleanArray with the closest match and returns the key
     public String closestMatch(){
 	double max = 100;
 	String retStr = "";
@@ -161,6 +187,16 @@ public class booleanArray{
 	}
 	return retStr;
     }
+
+    //Prints all the characters, used for testing purposes
+    public void printChars(){
+	for(booleanArray b : characters.keySet()){
+	    System.out.println(characters.get(b));
+	    System.out.println(b);
+	}
+    }
+
+    //Makes the image readable in X as true and _ as false
     public String toString(){
 	String retStr = "";
 	for(int r = 0; r<data.length; r++){
@@ -176,6 +212,8 @@ public class booleanArray{
 	}
 	return retStr;
     }
+
+    //Finds the first boolean either starting from the start or end, and using either columns or rows
     public int getFirstBoolean(boolean Start,boolean row){
         int start;
 	if((!Start)&&row){
@@ -227,6 +265,8 @@ public class booleanArray{
 	}
 	return start;
     }
+
+    //Makes a new booleanArray by eliminating the whitespace using the prior function
     public void trim(){
 	int startRow = getFirstBoolean(true,true);
 	int endRow = getFirstBoolean(false,true);
@@ -241,6 +281,38 @@ public class booleanArray{
 	data = newData;
 
     }
+
+    //To get the angle to rotate by, it assumes most capital letters are majority verticle lines
+    public double getRotAngle(){
+	double size = 0;
+	double total = 0;
+	for(int r = 1; r < data.length-1; r++){
+	    for(int c = 1; c < data[0].length-1; c++){
+		if(data[r+1][c]){
+		    size++;
+		}
+		if(data[r][c+1]){
+		    total+=Math.PI/2;
+		    size++;
+		}
+		if(data[r+1][c+1]){
+		    total+=Math.PI/4;
+		    size++;
+		}
+		if(data[r-1][c+1]){
+		    total-=Math.PI/4;
+		    size++;
+		}
+		if(data[r][c-1]){
+		    total-=Math.PI/2;
+		    size++;
+		}
+	    }
+	}
+	return total/size;
+    }
+
+    //Main for testing purposes
     public static void main(String[]args){
 	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
 	boolean[][]data2={{true,true},{false,false}};
