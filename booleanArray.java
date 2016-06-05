@@ -14,6 +14,9 @@ public class booleanArray{
 	}
 	trim();
     }
+    public void setValue(int r, int c, boolean val){
+	data[r][c] = val;
+    }
     public boolean getValue(int r, int c){
 	return data[r][c];
     }

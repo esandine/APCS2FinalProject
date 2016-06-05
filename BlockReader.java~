@@ -86,7 +86,7 @@ public class BlockReader{
 	booleanArray = new boolean[30][30];
 	for(int c = 0; c < 30; c++){
 	    for(int r = 0; r < 30; r++){
-		if(c % 10 == 0){
+		if(c % 10 == 0 || (c%5==0 && r!=0)){
 		    booleanArray[r][c] = false;
 		}
 		else{
@@ -134,9 +134,9 @@ public class BlockReader{
 	}*/
     public String toString(){
 	String s = "";
-	for(int r = 0; r < booleanArray.length; r++){
-	    for(int c = 0; c < booleanArray[0].length; c++){
-		s += booleanArray[r][c] + " ";
+	for(int r = 0; r < ori.length; r++){
+	    for(int c = 0; c < ori[0].length; c++){
+		s += ori[r][c] + " ";
 	    }
 	    s += "\n";
 	}

@@ -178,7 +178,9 @@ public class ReadImage{
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c<width; c++){
 		pixelRGBValues[r][c].toBlackandWhite();
+		System.out.print(pixelRGBValues[r][c].getColor() +" ");
 	    }
+	    System.out.println("");
 	}
     }
     public boolean[][]toBoolean(){
