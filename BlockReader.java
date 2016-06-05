@@ -52,10 +52,15 @@ public class BlockReader{
 	String text = "";
 	System.out.println(symbols.size());
 	for(int i = 0; i < symbols.size(); i++){
-	    symbols.get(i).trim();
+	    boolean space = symbols.get(i).trim();
 	    symbols.get(i).loadCharacters();
-	    text+= symbols.get(i).closestMatch();
-	}
+	    if(space){
+		text+= "\t" + symbols.get(i).closestMatch();
+	    }
+	    else{
+		text+= symbols.get(i).closestMatch();
+	    }
+	}   
 	return text;
     }
     public boolean[][] removeSymbol(int cS, int cE){

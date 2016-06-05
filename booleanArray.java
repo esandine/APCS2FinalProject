@@ -268,6 +268,7 @@ public class booleanArray{
 
     //Makes a new booleanArray by eliminating the whitespace using the prior function
     public boolean trim(){
+	boolean b = false;
 	int startRow = getFirstBoolean(true,true);
 	int endRow = getFirstBoolean(false,true);
 	int startCol = getFirstBoolean(true,false);
@@ -278,11 +279,11 @@ public class booleanArray{
 		newData[i][ii]=data[i+startRow][ii+startCol];
 	    }
 	}
-	data = newData;
-	if(endCol - startCol > 1.25 * (endRow - startRow)){
-	    return true;
+	if(data[0].length > newData.length){
+	    b = true;
 	}
-	return false;
+	data = newData;
+	return b;
     }
 
     //To get the angle to rotate by, it assumes most capital letters are majority verticle lines
