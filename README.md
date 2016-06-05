@@ -22,6 +22,19 @@ xx/xx/xxxx:
 -Error with Readimage is fixed using colorspace and colormodel
 -Goals
 -add fonts / figure out how much to rotate and image
+-Issac Kim
+-kind of done 06/04/2016, started before midnight ended way after
+-New Features:
+-Reworked block reading so it doesn't create actual image files for each indiviudal symbol
+-Boosts efficiency and goes around buggy constructor
+-Reading one line of text works
+-finding spaces in text works, but maybe not best method
+-Bugs Fixed:
+-Reading line of text
+-Bugs Added:
+-None
+-Goals:
+-Reading multi lines of text
 
 
 06/03/2016:
@@ -35,6 +48,20 @@ xx/xx/xxxx:
 -Goals
 
 06/02/2016:
+-Issac Kim
+-New Features:
+-Restart completely
+-Found out there was an error with one of our original constructors
+-Entire image was read as black, which led to big issues with breaking blocks of text into smaller lines
+-Made a default "image" with hard coded values
+-breaking this test image worked and was able to output these symbols into image files
+-can not read text yet, because original constructor is not working
+-Bugs Added: 
+-none
+-Bugs Fixed:
+-breaking blocks works, but needs default array values
+-Goals:
+-make sure breaking blocks of text works with actual text and not only preset values
 -Ely Sandine
 -New Features:
 -none
@@ -58,6 +85,15 @@ xx/xx/xxxx:
 -Figure how much to rotate an image by
 
 05/27/2016:
+-Issac Kim
+-New Features:
+-Bug fix attempt
+-Bugs Added:
+-not functioning
+-Bugs Fixed:
+-none
+-Goals:
+-Fix block reading
 -Ely Sandine
 -New Features:
 -Trim function fixes the problem of Rotate making the images too big
@@ -69,6 +105,15 @@ xx/xx/xxxx:
 -Make Rotate better
 
 05/26/2016:
+-Issac Kim
+-New Features:
+-create new method for finding dimensions
+-Bugs Added:
+-not functioning
+-Bugs Fixed:
+-none
+-Goals:
+-fix reading blocks of text
 -Ely Sandine
 -New Features:
 -Rotation works by enlarging the image and spinning it
@@ -80,7 +125,18 @@ xx/xx/xxxx:
 -Goals
 -Test rotating more,
 -make a program that cuts down the white space
+
 05/25/2016:
+-Issac Kim
+-New Features:
+-restart work on removing symbols, this time in a new class unlike original
+-idea is to return dimensions of an subimage in larger image and remove it
+-Bugs Added:
+-not functioning
+-Bugs Fixed:
+-none
+-Goals:
+-Make line reading work
 -Ely Sandine
 -New Features:
 -added rotating by converting to polar coordinates then back into normal array
@@ -103,7 +159,30 @@ xx/xx/xxxx:
 -Goals
 -rotating
 
+05/23/2016:
+-Issac Kim
+-New Features:
+-make driver for class demo
+-Bugs Added:
+-none
+-Bugs Fixed:
+-none
+-Goals:
+-Reading lines of text
+
 05/22/2016:
+-Issac Kim 
+-New Features:
+-add rest of alphabet
+-rescale images of alphabet to single size
+-Make comparing imput char to preloaded chars work
+-return string of image if it is found
+-Bug Fixed:
+-none
+-Bugs Added:
+-none
+Goals:
+-Make reading more than once char work
 -Ely Sandine
 -New Features:
 -Used booleanCharacter class to make loadDirectory which converts all files in a directory to a hashtable with the booleanArray of the picture and a string with the name
@@ -120,6 +199,17 @@ xx/xx/xxxx:
 -improve speed
 -improve accuracy
 -be able to identify letters
+
+05/20/2016:
+-Issac Kim
+-New Features:
+-once program loops through directory, its output images will fill up a new directory
+-Bugs Added: 
+-none
+-Bugs Fixed:
+-Directory looping works now
+-Goal:
+-now that directory looping works for smaller subset of random images, add the rest of the alphabet
 
 05/18/2016:
 -Ely Sandine
@@ -146,6 +236,17 @@ xx/xx/xxxx:
 -Goals
 -Clean up code
 -calculate a percent error given two images
+-Issac Kim
+-New Features:
+-Make Character class, each img file of font will become a character object, which is a boolean array
+-Start Characters class, which will store the Character objects
+-Begin directory reading, so images can be stored in one directory and the a method can loop through that dir
+-Bugs Added:
+-directory reading is buggy
+-Bugs Fixed:
+-none
+-Goals:
+-fix reading through dirs, so program can compare person's images to preloaded text images
 
 05/16/2016:
 -Ely Sandine
@@ -158,6 +259,27 @@ xx/xx/xxxx:
 -none
 -Goals
 -Work on comparison between image and characters
+-Issac Kim
+-New Features:
+-nothing big, started adding images of text chars in OCR font
+-Bug Added:
+-none
+-Bugs Fixed:
+-none
+-Goals:
+-continue adding ocr font chars and comparison to output string of image files
+
+05/14/2016:
+Issac Kim
+-New Features:
+-Try to begin removing symbols
+-After finding background, attempt removing smaller images consisting of non bg color parts
+-Bugs Added:
+-Not really a bug, but attempt at removing was unsuccessful and scrapped
+-Bugs Fixed:
+-none
+-Goals:
+-comparing text to preloaded text
 
 05/13/2016:
 -Ely Sandine
@@ -172,6 +294,18 @@ xx/xx/xxxx:
 -none
 -Goals:
 -Comparing with images to get letters
+-Issac Kim
+-New Features:
+-Start loadRGBValues()
+-Using an imput image, it loads the rgb values onto an int[]
+-Begin looking for background color, in attempt to differentiate between text and non-text
+-Issues with bgcolor method is that it uses very simplistic determination method
+-Bugs Added:
+-none
+-Bugs Fixed:
+-none
+-Goals:
+-Try to break an image into smaller sub images
 
 Project Plan:
 0) Learn to read image files and convert to pixels
