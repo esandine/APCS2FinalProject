@@ -1,9 +1,9 @@
 public class Driver{
 
     public static void main(String[]args){
-	ReadImage r = new ReadImage("rescaledAlpha/A.png");
+	ReadImage r = new ReadImage("penguin");
 	r.setBlackAndWhite();
-	r.outPut("testB.png");
+	r.outPut("testing");
     }
 }
 
