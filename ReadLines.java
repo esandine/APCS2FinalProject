@@ -1,19 +1,27 @@
+import java.util.*;
+
 public class ReadLines{
-    private ArrayList<BlockReader> lines;
+    private ArrayList<String> lines;
     private booleanArray img;
 
     public ReadLines(String image){
 	img = Read.loadBoolean(image);
 	img.trim();
-	lines = new ArrayList<BlockReader>();
+	lines = new ArrayList<String>();
     }
     //splits big block of text into mulptiple lines to be read by BlockReader class
     public void divideLines(){
 	for(int r = 0; r < img.getRows(); r++){
 	    int rE = findBottomRow(r);
-	    booleanArray currLine = new booleanArray(removeLine(r, rE));
-	    BlockReader Line = new BlockReader(currLine);
-	    lines.add(Line);
+	    boolean[][] barry = removeLine(r, rE);
+	    //booleanArray currLine = new booleanArray(barry);
+	    //System.out.println(currLine);
+	    
+	    BlockReader Line = new BlockReader(barry);
+	    //System.out.println(Line.stringImg());
+	    Line.removeSymbols();
+	    String currText = Line.stringImg();
+	    lines.add(currText);
 	    r = rE;
 	}
     }
@@ -37,16 +45,20 @@ public class ReadLines{
 	    }
 	    r++;
 	}
-	return r;
+	return r - 1;
     }
     //return boolean[][] using dimension given
     public boolean[][] removeLine(int rS, int rE){
 	int height = rE - rS + 1;
+	//System.out.println(img.getRows());
 	int width = img.getCols();
+	//System.out.println(height + " " + width);
 	boolean[][] arr = new boolean[height][width];
 	for(int r = 0; r < height; r++){
 	    for(int c = 0; c < width; c++){
+	
 		arr[r][c] = img.getValue(r + rS, c);
+		//System.out.print(arr[r][c]);
 	    }
 	}
 	return arr;
@@ -55,7 +67,7 @@ public class ReadLines{
     public String returnText(){
 	String txt = "";
 	for(int i = 0; i < lines.size(); i++){
-	    txt += lines.get(i).stringImg() + "\n";
+	    txt += lines.get(i) + "\n";
 	}
 	return txt;
     }

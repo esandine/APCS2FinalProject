@@ -19,9 +19,9 @@ public class BlockReader{
 	
     }
     //constructor to be used for multiline reading class
-    public BlockReader(booleanArray image){
+    public BlockReader(boolean[][] image){
 	symbols = new ArrayList<booleanArray>();
-	img = image;
+	img = new booleanArray(image);
 	img.trim();
     }
     //loops through one line of text, does not handle multiple lines. Makes each char found its own booleanArray in symbols ArrayList
