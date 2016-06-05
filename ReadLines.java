@@ -51,5 +51,12 @@ public class ReadLines{
 	}
 	return arr;
     }
-    
+    //returns image in text form
+    public String returnText(){
+	String txt = "";
+	for(int i = 0; i < lines.size(); i++){
+	    txt += lines.get(i).stringImg() + "\n";
+	}
+	return txt;
+    }
 }
