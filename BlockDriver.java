@@ -1,9 +1,9 @@
 public class BlockDriver{
     public static void main(String[] args){
-	BlockReader r = new BlockReader("text2.jpeg");
+	ReadLines r = new ReadLines("text4.jpeg");
 	//r.setDef();
-		r.removeSymbols();
+		r.divideLines();
 	
-		System.out.println(r.stringImg());
+		System.out.println(r.returnText());
     }
 }
