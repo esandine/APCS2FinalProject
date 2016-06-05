@@ -4,22 +4,22 @@ public class BlockReader{
     private ArrayList<ReadImage> symbols;
     private ReadImage image;
     private booleanArray booleanImage;
-    private boolean[][] ori;
+    //private boolean[][] ori;
     
     public BlockReader(String img){
 	image = new ReadImage(img);
-	image.scaleImage();
+	//image.scaleImage();
 	int[] dims = image.dims();
 	System.out.println(dims[0] + " " + dims[1]);
 	booleanImage = new booleanArray(image.toBoolean());
-	ori = booleanImage.getData();
+	//ori = booleanImage.getData();
 	symbols = new ArrayList<ReadImage>();
 	
     }
-    public void removeSymbols(){
-	for(int c = 0; c < booleanArray.length; c++){
+    /* public void removeSymbols(){
+	for(int c = 0; c < ori[0].length; c++){
 	    int cE = readLine(c);
-	    if(cE < booleanArray.length){
+	    if(cE < ori[0].length){
 		boolean[][] arr = removeSymbol(c, cE);
 		print(arr);
 		
@@ -45,12 +45,12 @@ public class BlockReader{
 	}
     }
     public boolean[][] removeSymbol(int cS, int cE){
-	int height = booleanArray.length;
+	int height = ori.length;
 	int width = cE - cS + 1;
 	boolean[][] sym = new boolean[height][width];
 	for(int r = 0; r < sym.length; r++){
 	    for(int c = 0; c < sym[0].length; c++){
-		sym[r][c] = booleanArray[r][c + cS];
+		sym[r][c] = ori[r][c + cS];
 	    }
 	}
 	return sym;
@@ -60,10 +60,10 @@ public class BlockReader{
 	boolean triggered = false;
 	int c = cS;
 	int cE = cS;
-	int C = booleanArray[0].length;
+	int C = ori[0].length;
 	while(c  < C){
-	    for(int r = 0; r < booleanArray.length; r++){
-		if(booleanArray[r][c]){
+	    for(int r = 0; r < ori.length; r++){
+		if(ori[r][c]){
 		    triggered = true;
 		    first = true;
 		}
@@ -83,14 +83,14 @@ public class BlockReader{
 	return cE;
     }
     public void setDef(){
-	booleanArray = new boolean[30][30];
+	ori = new boolean[30][30];
 	for(int c = 0; c < 30; c++){
 	    for(int r = 0; r < 30; r++){
 		if(c % 10 == 0 || (c%5==0 && r!=0)){
-		    booleanArray[r][c] = false;
+		    ori[r][c] = false;
 		}
 		else{
-		    booleanArray[r][c] = true;
+		    ori[r][c] = true;
 		}
 	    }
 	}
@@ -133,13 +133,6 @@ public class BlockReader{
 	return endpoint;
 	}*/
     public String toString(){
-	String s = "";
-	for(int r = 0; r < ori.length; r++){
-	    for(int c = 0; c < ori[0].length; c++){
-		s += ori[r][c] + " ";
-	    }
-	    s += "\n";
-	}
-	return s;
+	return booleanImage.toString();
     }
 }
