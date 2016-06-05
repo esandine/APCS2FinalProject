@@ -5,7 +5,8 @@ public class BlockReader{
     //private ReadImage image;
     private booleanArray img;
     // private boolean[][] ori;
-    
+
+    //constructor for single line text
     public BlockReader(String image){
 	//image = new ReadImage(img);
 	//image.scaleImage();
@@ -16,6 +17,12 @@ public class BlockReader{
 	//ori = booleanImage.getData();
 	symbols = new ArrayList<booleanArray>();
 	
+    }
+    //constructor to be used for multiline reading class
+    public BlockReader(booleanArray image){
+	symbols = new ArrayList<booleanArray>();
+	img = image;
+	img.trim();
     }
     //loops through one line of text, does not handle multiple lines. Makes each char found its own booleanArray in symbols ArrayList
     public void removeSymbols(){

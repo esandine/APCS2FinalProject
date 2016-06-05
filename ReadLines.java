@@ -9,7 +9,13 @@ public class ReadLines{
     }
     //splits big block of text into mulptiple lines to be read by BlockReader class
     public void divideLines(){
-
+	for(int r = 0; r < img.getRows(); r++){
+	    int rE = findBottomRow(r);
+	    booleanArray currLine = new booleanArray(removeLine(r, rE));
+	    BlockReader Line = new BlockReader(currLine);
+	    lines.add(Line);
+	    r = rE;
+	}
     }
     //finds end row of one section of the block given the row it starts at
     public int findBottomRow(int rS){
@@ -34,7 +40,7 @@ public class ReadLines{
 	return r;
     }
     //return boolean[][] using dimension given
-    public boolean[][] removeLine(itn rS, int rE){
+    public boolean[][] removeLine(int rS, int rE){
 	int height = rE - rS + 1;
 	int width = img.getCols();
 	boolean[][] arr = new boolean[height][width];
