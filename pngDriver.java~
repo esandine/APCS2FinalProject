@@ -1,7 +1,5 @@
 public class pngDriver{
     public static void main(String[]args){
-	booleanArray b = Read.loadBoolean("whiteOnRedA.png");
-	b.scale(50,50);
-	System.out.println(b);
+	Read.trimDir("characters/lowerLetters/");
     }
 }

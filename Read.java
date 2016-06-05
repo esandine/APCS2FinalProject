@@ -50,6 +50,11 @@ public class Read{
 	}
     }
 
+    //Trims and rescales
+    public static void processDir(String dir){
+	trimDir(dir);
+	rescaleDir(dir);
+    }
     //Compares two images given the image names and the percent error needed
     public static boolean compare(String image1, String image2, double percentError){
 	booleanArray a1 = loadBoolean(image1);
