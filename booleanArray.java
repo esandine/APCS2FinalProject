@@ -315,4 +315,8 @@ public class booleanArray{
 	}
 	return total/size;
     }
+    public void correct(){
+	rotate(getRotAngle());
+    }
+
 }

@@ -7,6 +7,7 @@ public class ReadLines{
     public ReadLines(String image){
 	img = Read.loadBoolean(image);
 	img.trim();
+	img.correct();
 	lines = new ArrayList<String>();
     }
     //splits big block of text into mulptiple lines to be read by BlockReader class
