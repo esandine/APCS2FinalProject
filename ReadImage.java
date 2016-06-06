@@ -115,35 +115,6 @@ public class ReadImage{
 	scaleImage(162,100);
     }
 
-    //finds the background color
-    /*private void getBG(){
-	int black = 0;
-	int white = 0;
-	bgC = new Pixel(0,0,0);
-	for(int c = 0; c < width; c++){
-	    if(isBlack(0, c) || isBlack(height - 1, c)){
-		black++;
-	    }
-	    else{
-		white++;
-	    }
-	}
-	for(int r = 1; r < height - 1; r++){
-	    if(isBlack(r, 0) || isBlack(r, width - 1)){
-		black++;
-	    }
-	    else{
-		white++;
-	    }
-	}
-	if(black > white){
-	    bgC.setColor(Color.black);
-	}
-	else{
-	    bgC.setColor(Color.white);
-	}
-	}*/
-
     //MaxNode is used to find the two most common colors
     private class MaxNode{
 	private int color;
@@ -236,44 +207,6 @@ public class ReadImage{
 	}
     }
 
-    //remove symbols from picture not in use I think
-    private BufferedImage removeSymbol(){
-	int startX = width - 1;
-	int startY = height - 1;
-	int endX = 0;
-	int endY = 0;
-	//getBG();
-	for(int r = 0; r < height; r++){
-	    for(int c = 0; c < width; c++){
-		if(!pixelRGBValues[r][c].getColor().equals(bgC.getColor())){
-		    if(r < startY){
-			startY = r;
-		    }
-		    if(r > endY){
-			endY = r;
-		    }
-		    if(c < startX){
-			startX = c;
-		    }
-		    if(c > endX){
-			endX= c;
-		    }
-		}
-	    }
-	}
-	int w = Math.abs(startX - endX) + 1;
-	int h = Math.abs(startY - endY) + 1;
-	System.out.println(height + "," + width + "," + h + "," + w);
-	BufferedImage symbol = new BufferedImage(w, h, 1);
-	for(int r = 0; r < h; r++){
-	    for(int c = 0; c < w; c++){
-		symbol.setRGB(c, h - r - 1, pixelRGBValues[r + startY][c + startX].getColor().getRGB());
-	    }
-	}
-	//	System.out.println(symbol.getHeight() + "," + symbol.getWidth());
-	return symbol;
-    }
-
     //Prints out all the colors of the pixels in pixelRGBValues
     public void getColors(){
 	for(int r = 0; r < height; r++){
@@ -316,11 +249,9 @@ public class ReadImage{
 	//Splits the most common color into rgb components
 	Color most = new Color(twoc[0]);
 	float[] mostComponents = most.getRGBComponents(null);
-	System.out.println(Arrays.toString(mostComponents));
 	//Splits the second most common color into rgb componets
 	Color second = new Color(twoc[1]);
 	float[] secondComponents = second.getRGBComponents(null);
-	System.out.println(Arrays.toString(secondComponents));
 
 	//Variables for the current rgb values
 	float[] currentComponents = new float[3];
@@ -415,16 +346,6 @@ public class ReadImage{
 	    System.out.println(e);
 	}
     }
-    /*public void outputSymbol(String s){
-	//	setRGBValues();
-	try{
-	    ImageIO.write(symbol,"png",new File(s));
-	}catch(IOException e){
-	    System.out.println("Writing error");
-	}
-
-	}*/
-
     //Used for debugging
     public static void debug(Object o){
 	if(debug){
