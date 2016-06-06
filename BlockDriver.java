@@ -1,6 +1,6 @@
 public class BlockDriver{
     public static void main(String[] args){
-	ReadLines r = new ReadLines("text4.jpeg");
+	ReadLines r = new ReadLines("NTest.jpeg");
 	//r.setDef();
 		r.divideLines();
 	
