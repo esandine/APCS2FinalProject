@@ -26,11 +26,9 @@ public class BlockReader{
     }
     //loops through one line of text, does not handle multiple lines. Makes each char found its own booleanArray in symbols ArrayList
     public void removeSymbols(){
-	System.out.println(img.getCols());
 	for(int c = 0; c < img.getCols(); c++){
 	    int cE = readLine(c);
-	    System.out.println(c + " " + cE);
-	    
+
 	    if(cE < img.getCols()){
 		boolean[][] arr = removeSymbol(c, cE);
 		//print(arr);
@@ -62,7 +60,7 @@ public class BlockReader{
     //Returns the string that is found in the image
     public String stringImg(){
 	String text = "";
-	System.out.println(symbols.size());
+
 	for(int i = 0; i < symbols.size(); i++){
 	    boolean space = symbols.get(i).trim();
 	    symbols.get(i).loadCharacters();
