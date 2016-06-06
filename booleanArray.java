@@ -315,18 +315,4 @@ public class booleanArray{
 	}
 	return total/size;
     }
-
-    //Main for testing purposes
-    public static void main(String[]args){
-	boolean[][]data={{true,false,true},{false,true,false},{true,false,true}};
-	boolean[][]data2={{true,true},{false,false}};
-	booleanArray b2 = new booleanArray(data2);
-	b2.scaleRows(9);
-	b2.scaleCols(9);
-	System.out.println(b2);
-	b2.rotate(Math.PI*3/4);
-	//System.out.println(b2);
-	//b2.rotate(Math.PI/2);
-	System.out.println(b2);
-    }
 }
