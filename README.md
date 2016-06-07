@@ -33,11 +33,13 @@ Development Log:
 -New Features:
 -correct finds angle to rotate
 -writeHTML in ReadImage writes the results in html to results.html
+-Added text to description and driver
 -Bugs Added:
 -Bugs Fixed:
 -Deleted alot of test image files that were cluttering te directory
+-helped fix lowercase letters
 -Goals:
--FINISH
+-None we are finished
 -Issac Kim
 -New Features:
 -add demo driver
