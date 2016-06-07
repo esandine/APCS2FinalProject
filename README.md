@@ -1,15 +1,32 @@
 # APCS2FinalProject
--Issac Ely
--OCR
-Development Log:
-COPY/PASTE THIS EVERYNIGHT:
+Team Name: Sardine Kimbap (Ely Sandine and Issac Kim)
+Project Name: OCR
+Description: We created an Optical Character Reader that takes image files and returns the letters in the image. To test it compile and run DemoDriver.java the rest of the instructions are included. Sample files to test on are text.JPEG, text1.JPEG, text2.JPEG, text3.JPEG, and text4.JPEG. You can also test images from the internet, but they are not guaranteed to be successful.
+NOTE: If there is an error it is likely due to not all files being compiled. The following files need to be compiled and are not auto-compiled by compiling DemoDriver:
 
-xx/xx/xxxx:
--<Name>
--New Features:
--Bugs Added:
--Bugs Fixed:
--Goals
+BlockReader.java
+Character.java
+Characters.java
+Pixel.java
+Read.java
+ReadBlock.java
+ReadImage.java
+ReadLines.java
+booleanArray.java
+rescale.java
+
+Project Plan:
+-Make it possible to read image files into a 2D array of pixels
+-Convert 2D array of pixels to arrays of booleans with true representing part of the character and false being the whitespace
+-Compare with individual characters the same size to determine what matches with an image
+-Scale images and trim whitespace in order to improve speed.
+-Read lines of characters
+-Read multiple lines of characters
+-Rotate images that are tilted
+-Output results to an html file
+
+
+Development Log:
 
 06/06/2016:
 -Ely Sandine
