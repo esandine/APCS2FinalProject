@@ -17,6 +17,7 @@ xx/xx/xxxx:
 -correct finds angle to rotate
 -Bugs Added:
 -Bugs Fixed:
+-Deleted alot of test image files that were cluttering te directory
 -Goals:
 -FINISH
 

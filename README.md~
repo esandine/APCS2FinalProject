@@ -11,6 +11,26 @@ xx/xx/xxxx:
 -Bugs Fixed:
 -Goals
 
+06/06/2016:
+-Ely Sandine
+-New Features:
+-correct finds angle to rotate
+-Bugs Added:
+-Bugs Fixed:
+-Goals:
+-FINISH
+
+06/05/2016:
+-Ely Sandine
+-New Features:
+-setBlackAndWhite now works by detecting the two most common colors in the image
+-Added lowercase letters
+-Bugs Added:
+-Lowercase letters are not very accurately scanned
+-Bugs Fixed:
+-Goals
+-Make sure rotating works
+
 
 06/04/2016:
 -Ely Sandine
