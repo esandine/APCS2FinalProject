@@ -89,7 +89,6 @@ public class ReadLines{
 	try{
 	    File f = new File("results.html");
 	    PrintWriter w = new PrintWriter(f);
-	    System.out.println(toHTML());
 	    w.write(toHTML());
 	    w.close();
 	}catch(IOException e){
