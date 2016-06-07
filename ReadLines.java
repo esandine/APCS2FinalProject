@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 public class ReadLines{
     private ArrayList<String> lines;
     private booleanArray img;
@@ -84,5 +84,19 @@ public class ReadLines{
 	}
 	retStr+="</center></head></html>";
 	return retStr;
+    }
+    public void writeHTML(){
+	try{
+	    File f = new File("results.html");
+	    PrintWriter w = new PrintWriter(f);
+	    System.out.println(toHTML());
+	    w.write(toHTML());
+	    w.close();
+	}catch(IOException e){
+	    System.out.println("Error writing to results.html. This is the html: ");
+	    System.out.println(toHTML());
+	    System.out.println("Plaintext:");
+	    System.out.println(returnText());
+	}
     }
 }

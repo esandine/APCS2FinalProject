@@ -3,6 +3,6 @@ public class BlockDriver{
 	ReadLines r = new ReadLines(args[0]);
 	//r.setDef();
 	r.divideLines();
-	System.out.println(r.toHTML());
+	r.writeHTML();
     }
 }
