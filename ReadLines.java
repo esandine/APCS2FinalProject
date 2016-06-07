@@ -72,4 +72,17 @@ public class ReadLines{
 	}
 	return txt;
     }
+    public String toHTML(){
+	String inPut= returnText();
+	String retStr="<!DOCTYPE html><html><head><center>";
+	for(int i = 0; i<inPut.length(); i++){
+	    if(inPut.substring(i,i+1).equals("\n")){
+		retStr+="<br>";
+	    }else{
+		retStr+=inPut.substring(i,i+1);
+	    }
+	}
+	retStr+="</center></head></html>";
+	return retStr;
+    }
 }

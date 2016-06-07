@@ -65,7 +65,7 @@ public class BlockReader{
 	    boolean space = symbols.get(i).trim();
 	    symbols.get(i).loadCharacters();
 	    if(space){
-		text+= "\t" + symbols.get(i).closestMatch();
+		text+= " " + symbols.get(i).closestMatch();
 	    }
 	    else{
 		text+= symbols.get(i).closestMatch();
