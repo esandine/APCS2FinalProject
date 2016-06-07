@@ -1,9 +1,8 @@
 public class BlockDriver{
     public static void main(String[] args){
-	ReadLines r = new ReadLines("alpha2.gif");
+	ReadLines r = new ReadLines(args[0]);
 	//r.setDef();
 		r.divideLines();
-	
 		System.out.println(r.returnText());
     }
 }
