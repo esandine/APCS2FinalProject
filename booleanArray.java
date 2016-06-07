@@ -280,7 +280,7 @@ public class booleanArray{
 		newData[i][ii]=data[i+startRow][ii+startCol];
 	    }
 	}
-	if(data[0].length > newData.length){
+	if(data[0].length > newData.length * 1.5){
 	    b = true;
 	}
 	data = newData;
