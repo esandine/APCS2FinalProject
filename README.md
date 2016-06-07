@@ -45,9 +45,11 @@ Development Log:
 -add demo driver
 -add lowercase letters
 -Bugs Added:
--none
+-Errors with reading found once lowercase added:
+Upper: AUCDEFGHIJKLMHOPQRSTUVUxYZ
+Lower: JbcdEtUhIjkIMUoPqrStUVuxyZ
 -Bugs Fixed:
--None
+-helped fix lowercase letters
 -Goals:
 -Finish
 
