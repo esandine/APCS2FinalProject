@@ -27,7 +27,7 @@ public class Read{
         String[] charImages = in.list();
 	for(int i = 0;i<charImages.length;i++){
 	    System.out.println(charImages[i]);
-	    rescale(dir+charImages[i]);
+	    rescale(dir+"/"+charImages[i]);
 	}
     }
 
@@ -46,7 +46,7 @@ public class Read{
         String[] charImages = in.list();
 	for(int i = 0;i<charImages.length;i++){
 	    System.out.println(charImages[i]);
-	    trim(dir+charImages[i]);
+	    trim(dir+"/"+charImages[i]);
 	}
     }
 
