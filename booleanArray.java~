@@ -53,6 +53,7 @@ public class booleanArray{
 	File in = new File("characters/");
 	String[] fonts = in.list();
 	for(int i = 0; i < fonts.length; i++){
+	    //System.out.println(fonts[i]);
 	    loadDirectory("characters/"+fonts[i]+"/");
 	}
     }

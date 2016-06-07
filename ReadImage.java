@@ -184,7 +184,7 @@ public class ReadImage{
 		    //If this is the biggest frequency
 		    if(mostCommon.getFrequency()>secondCommon.getFrequency()){
 			secondCommon = new MaxNode(mostCommon.getColor(),mostCommon.getFrequency());
-			System.out.println("Triggered");
+			//System.out.println("Triggered");
 		    }
 		    mostCommon = n;
 		}else if(n.getFrequency()>secondCommon.getFrequency()){
