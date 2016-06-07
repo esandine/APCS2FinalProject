@@ -38,8 +38,28 @@ Development Log:
 -Deleted alot of test image files that were cluttering te directory
 -Goals:
 -FINISH
+-Issac Kim
+-New Features:
+-add demo driver
+-add lowercase letters
+-Bugs Added:
+-none
+-Bugs Fixed:
+-None
+-Goals:
+-Finish
 
 06/05/2016:
+-Issac Kim
+-New Features:
+-make read lines, can read multiple lines now
+-allow reading one line to be able to read different size chars
+-Bugs Added:
+-not added now, but found that letters b, n, and w in upper are not being processed correctly
+-Bug Fixed:
+-None
+-Goals
+-make demoDriver
 -Ely Sandine
 -New Features:
 -setBlackAndWhite now works by detecting the two most common colors in the image
