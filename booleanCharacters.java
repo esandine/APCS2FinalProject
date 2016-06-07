@@ -22,13 +22,14 @@ public class booleanCharacters{
 	for(int i = 0; i < charImages.length; i++){
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);	   
 	}
+
     }
 
     //Creates the hashTable using the data
     public Hashtable<booleanArray,String> toHashtable(String dir){
 	Hashtable<booleanArray,String> retHashtable = new Hashtable<booleanArray,String>(booleanArrs.length);
 	for(int i = 0;i<booleanArrs.length;i++){
-	    retHashtable.put(booleanArrs[i],dir+charStrings[i]);
+	    retHashtable.put(booleanArrs[i],charStrings[i]);
 	}
 	return retHashtable;
     }

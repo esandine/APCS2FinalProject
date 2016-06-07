@@ -1,10 +1,16 @@
 import java.io.File;
 import java.util.Hashtable;
+//Primarily used for creating the hashtable of booleans in the loadCharacters function of booealArray
 public class booleanCharacters{
+    //Instance Variables
     private String[] charStrings;
     private booleanArray[] booleanArrs;
     private String directory;
     private int index = 0;
+
+    //Constructors
+
+    //Loads a directory into the booleanCharacters
     public booleanCharacters(String dir){
 	File in = new File(dir);
 	String[] charImages = in.list();
@@ -17,6 +23,8 @@ public class booleanCharacters{
 	    charStrings[i] = charImages[i].substring(0, charImages[i].length() - 4);	   
 	}
     }
+
+    //Creates the hashTable using the data
     public Hashtable<booleanArray,String> toHashtable(String dir){
 	Hashtable<booleanArray,String> retHashtable = new Hashtable<booleanArray,String>(booleanArrs.length);
 	for(int i = 0;i<booleanArrs.length;i++){
@@ -24,6 +32,8 @@ public class booleanCharacters{
 	}
 	return retHashtable;
     }
+
+    //Finds a match of a booleanArray in a directory
     public boolean compareTo(booleanArray other, double percent){
 	for(int i = 0; i < booleanArrs.length; i++){
 	    if(booleanArrs[i].compareTo(other, percent)){
@@ -35,7 +45,7 @@ public class booleanCharacters{
 	return false;
     }
 
-    //returns the name of 
+    //returns the name of the closest match in the directory
     public String toString(booleanArray other, double percent){
 	if(compareTo(other, percent)){
 	    return charStrings[index];
