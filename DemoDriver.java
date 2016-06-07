@@ -2,6 +2,8 @@ import java.util.*;
 
 public class DemoDriver{
     public static void main(String[] args){
+	booleanArray b = new booleanArray(new boolean[1][1]);
+	b.loadCharacters();
 	Scanner myScanner = new Scanner(System.in);
 	System.out.println("Welcome to our Optical Character Reader (OCR)  created by team Sardine Kimbap.");
 	System.out.println("To run the OCR download the image you wish to read into this directory.");
