@@ -15,6 +15,7 @@ xx/xx/xxxx:
 -Ely Sandine
 -New Features:
 -correct finds angle to rotate
+-writeHTML in ReadImage writes the results in html to results.html
 -Bugs Added:
 -Bugs Fixed:
 -Deleted alot of test image files that were cluttering te directory
